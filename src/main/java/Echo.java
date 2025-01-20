@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -15,14 +16,16 @@ public class Echo {
         Scanner reader = new Scanner(System.in);
         String userInput = reader.nextLine();
 
-        Task[] storeTask = new Task[100];
+        ArrayList<Task> storeTask = new ArrayList<Task>();
+
         int storeTaskAmt = 0;
         int printedStoreTaskAmt = 0;
 
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
                 for (int i = 0; i < storeTaskAmt; i++) {
-                    System.out.println(i+1 + "." +  storeTask[i].toString() );
+                    System.out.println(i+1 + "." +  storeTask.get(i).toString());
+
                 }
                 userInput = reader.nextLine();
                 continue;
@@ -60,7 +63,7 @@ public class Echo {
             }
 
             printedStoreTaskAmt++;
-            System.out.println("Got it! I've added this task: \n" + storeTask[storeTaskAmt].toString() + "\n" +
+            System.out.println("Got it! I've added this task: \n" + storeTask.get(storeTaskAmt).toString() + "\n" +
                     "Now you have " + printedStoreTaskAmt  + " tasks in the list.");
 
             storeTaskAmt++;
@@ -71,32 +74,33 @@ public class Echo {
         System.out.println("See you next time");
     }
 
-    private static void updateMarkList(boolean markStatus, String inputIndex, Task[]  storeTask) {
+    private static void updateMarkList(boolean markStatus, String inputIndex, ArrayList<Task>  storeTask) {
         String element = inputIndex.split(" ")[1];
         int elementIndex = Integer.parseInt(element) - 1;
 
         if (markStatus) {
-            storeTask[elementIndex].setDone(true);
+            storeTask.get(elementIndex).setDone(true);
 
             System.out.println("Nice! Marked!");
 
         } else {
-            storeTask[elementIndex].setDone(false);
+            storeTask.get(elementIndex).setDone(false);
             System.out.println("OK, I've marked this task as not done yet:");
         }
 
-        System.out.println(storeTask[elementIndex].toString());
+        System.out.println(storeTask.get(elementIndex).toString());
 
     }
 
-    private static void updateList(String type, Task[] storeTask, int storeTaskAmt, String userInput) throws
+    private static void updateList(String type, ArrayList<Task> storeTask, int storeTaskAmt, String userInput) throws
             EchoIncorrectOption{
 
 
         if (type.equals("todo")) {
             userInput = userInput.split(" ", 2)[1];
 
-            storeTask[storeTaskAmt] = new Todo(userInput);
+            storeTask.add(new Todo(userInput));
+
 
         } else if (type.equals("deadline")) {
             userInput = userInput.split(" ", 2)[1];
@@ -105,7 +109,7 @@ public class Echo {
 
             String to = userInput.split("/")[1].replace("by ", "");
 
-            storeTask[storeTaskAmt] = new Deadline(description, to);
+            storeTask.add(new Deadline(description, to));
 
         } else if (type.equals("event")) {
             userInput = userInput.split(" ", 2)[1];
@@ -115,7 +119,8 @@ public class Echo {
             String from = userInput.split("/")[1].replace("from ", "");
             String to = userInput.split("/")[2].replace("to ", "");
 
-            storeTask[storeTaskAmt] = new Event(description, from, to);
+            storeTask.add(new Event(description, from, to));
+
         } else {
             throw new EchoIncorrectOption();
         }
