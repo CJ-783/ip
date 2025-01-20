@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Echo {
@@ -16,6 +17,7 @@ public class Echo {
 
         Task[] storeTask = new Task[100];
         int storeTaskAmt = 0;
+        int printedStoreTaskAmt = 0;
 
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
@@ -43,9 +45,23 @@ public class Echo {
 
             String type = userInput.split(" ")[0];
 
-            updateList(type, storeTask, storeTaskAmt, userInput);
+            try {
+                updateList(type, storeTask, storeTaskAmt, userInput);
+            } catch (EchoIncorrectOption err) {
+                System.out.println("Whoops, this option doesn't exist");
 
-            System.out.println("Got it! I've added this task: \n" + storeTask[storeTaskAmt].toString() );
+                userInput = reader.nextLine();
+                continue;
+            } catch (ArrayIndexOutOfBoundsException err) {
+                System.out.println("Whoops, the description cannot be empty!!");
+
+                userInput = reader.nextLine();
+                continue;
+            }
+
+            printedStoreTaskAmt++;
+            System.out.println("Got it! I've added this task: \n" + storeTask[storeTaskAmt].toString() + "\n" +
+                    "Now you have " + printedStoreTaskAmt  + " tasks in the list.");
 
             storeTaskAmt++;
             userInput = reader.nextLine();
@@ -53,7 +69,6 @@ public class Echo {
         }
 
         System.out.println("See you next time");
-
     }
 
     private static void updateMarkList(boolean markStatus, String inputIndex, Task[]  storeTask) {
@@ -74,28 +89,36 @@ public class Echo {
 
     }
 
-    private static void updateList(String type, Task[] storeTask, int storeTaskAmt, String userInput) {
+    private static void updateList(String type, Task[] storeTask, int storeTaskAmt, String userInput) throws
+            EchoIncorrectOption{
+
 
         if (type.equals("todo")) {
-            userInput = userInput.substring(5);
+            userInput = userInput.split(" ", 2)[1];
+
             storeTask[storeTaskAmt] = new Todo(userInput);
-        }
-        if (type.equals("deadline")) {
-            userInput = userInput.substring(9);
+
+        } else if (type.equals("deadline")) {
+            userInput = userInput.split(" ", 2)[1];
+
             String description = userInput.split("/")[0];
 
             String to = userInput.split("/")[1].replace("by ", "");
+
             storeTask[storeTaskAmt] = new Deadline(description, to);
-        }
-        if (type.equals("event")) {
-            userInput = userInput.substring(6);
+
+        } else if (type.equals("event")) {
+            userInput = userInput.split(" ", 2)[1];
+
             String description = userInput.split("/")[0];
 
             String from = userInput.split("/")[1].replace("from ", "");
             String to = userInput.split("/")[2].replace("to ", "");
-            storeTask[storeTaskAmt] = new Event(description, from, to);
-        }
 
+            storeTask[storeTaskAmt] = new Event(description, from, to);
+        } else {
+            throw new EchoIncorrectOption();
+        }
 
     }
 
