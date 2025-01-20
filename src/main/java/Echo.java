@@ -20,7 +20,7 @@ public class Echo {
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
                 for (int i = 0; i < storeTaskAmt; i++) {
-                    System.out.println(i+1 + ".[" + storeText[i].getStatusIcon() + "] " + storeText[i].getDescription());
+                    System.out.println(i+1 + "." +  storeText[i].toString() );
                 }
                 userInput = reader.nextLine();
                 continue;
@@ -67,12 +67,7 @@ public class Echo {
             System.out.println("OK, I've marked this task as not done yet:");
         }
 
-        String statusDescription = storeText[elementIndex].getDescription();
-        String statusIcon = storeText[elementIndex].getStatusIcon();
-
-        System.out.println("[" + statusIcon + "] " + statusDescription);
-
-
+        System.out.println(storeText[elementIndex].toString());
 
     }
 
