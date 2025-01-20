@@ -14,26 +14,66 @@ public class Echo {
         Scanner reader = new Scanner(System.in);
         String userInput = reader.nextLine();
 
-        String[] storeText = new String[100];
-        int storeTextAmnt = 0;
+        Task[] storeText = new Task[100];
+        int storeTaskAmt = 0;
 
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
-                for (int i = 0; i < storeTextAmnt; i++) {
-                    System.out.println(i+1 + ". " + storeText[i]);
+                for (int i = 0; i < storeTaskAmt; i++) {
+                    System.out.println(i+1 + ".[" + storeText[i].getStatusIcon() + "] " + storeText[i].getDescription());
                 }
+                userInput = reader.nextLine();
+                continue;
             }
 
-            storeText[storeTextAmnt] = userInput;
-            storeTextAmnt++;
+            if (userInput.contains("unmark")) {
 
-            System.out.println(userInput);
-            userInput = reader.nextLine();
+                updateMarkList(false, userInput, storeText);
+
+                userInput = reader.nextLine();
+                continue;
+
+            } else if (userInput.contains("mark")) {
+
+                updateMarkList(true, userInput, storeText);
+
+                userInput = reader.nextLine();
+                continue;
+            }
+
+                storeText[storeTaskAmt] = new Task(userInput);
+                storeTaskAmt++;
+
+                System.out.println("added: " + userInput);
+                userInput = reader.nextLine();
+
         }
 
         System.out.println("See you next time");
 
     }
 
+    private static void updateMarkList(boolean markStatus, String inputIndex, Task[]  storeText) {
+        String element = inputIndex.split(" ")[1];
+        int elementIndex = Integer.parseInt(element) - 1;
+
+        if (markStatus) {
+            storeText[elementIndex].setDone(true);
+
+            System.out.println("Nice! Marked!");
+
+        } else {
+            storeText[elementIndex].setDone(false);
+            System.out.println("OK, I've marked this task as not done yet:");
+        }
+
+        String statusDescription = storeText[elementIndex].getDescription();
+        String statusIcon = storeText[elementIndex].getStatusIcon();
+
+        System.out.println("[" + statusIcon + "] " + statusDescription);
+
+
+
+    }
 
 }
