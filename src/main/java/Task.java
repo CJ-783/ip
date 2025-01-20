@@ -3,6 +3,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    public Task() {
+
+    }
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -26,5 +30,10 @@ public class Task {
 
     public String getDescription() {
         return this.description;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 }
