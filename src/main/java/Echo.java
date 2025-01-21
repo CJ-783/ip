@@ -18,55 +18,34 @@ public class Echo {
 
         ArrayList<Task> storeTask = new ArrayList<Task>();
 
-        int storeTaskAmt = 0;
-        int printedStoreTaskAmt = 0;
-
         while (!userInput.equals("bye")) {
             if (userInput.equals("list")) {
-                for (int i = 0; i < storeTaskAmt; i++) {
+                for (int i = 0; i < storeTask.size(); i++) {
                     System.out.println(i+1 + "." +  storeTask.get(i).toString());
-
                 }
-                userInput = reader.nextLine();
-                continue;
             }
-
-            if (userInput.contains("unmark")) {
+            else if (userInput.contains("unmark")) {
 
                 updateMarkList(false, userInput, storeTask);
-
-                userInput = reader.nextLine();
-                continue;
 
             } else if (userInput.contains("mark")) {
 
                 updateMarkList(true, userInput, storeTask);
 
-                userInput = reader.nextLine();
-                continue;
+            } else {
+                String type = userInput.split(" ")[0];
+
+                try {
+                    updateList(type, storeTask, userInput);
+                } catch (EchoIncorrectOption err) {
+                    System.out.println("Whoops, this option doesn't exist");
+
+                } catch (ArrayIndexOutOfBoundsException err) {
+                    System.out.println("Whoops, the description cannot be empty!!");
+
+                }
             }
 
-            String type = userInput.split(" ")[0];
-
-            try {
-                updateList(type, storeTask, storeTaskAmt, userInput);
-            } catch (EchoIncorrectOption err) {
-                System.out.println("Whoops, this option doesn't exist");
-
-                userInput = reader.nextLine();
-                continue;
-            } catch (ArrayIndexOutOfBoundsException err) {
-                System.out.println("Whoops, the description cannot be empty!!");
-
-                userInput = reader.nextLine();
-                continue;
-            }
-
-            printedStoreTaskAmt++;
-            System.out.println("Got it! I've added this task: \n" + storeTask.get(storeTaskAmt).toString() + "\n" +
-                    "Now you have " + printedStoreTaskAmt  + " tasks in the list.");
-
-            storeTaskAmt++;
             userInput = reader.nextLine();
 
         }
@@ -92,38 +71,50 @@ public class Echo {
 
     }
 
-    private static void updateList(String type, ArrayList<Task> storeTask, int storeTaskAmt, String userInput) throws
+    private static void updateList(String type, ArrayList<Task> storeTask, String userInput) throws
             EchoIncorrectOption{
 
+        if (type.equals("delete")) {
+            int index = Integer.parseInt(userInput.split(" ")[1]) -1;
 
-        if (type.equals("todo")) {
-            userInput = userInput.split(" ", 2)[1];
+            System.out.println("Noted. I've removed this task:\n" +  storeTask.get(index).toString());
 
-            storeTask.add(new Todo(userInput));
-
-
-        } else if (type.equals("deadline")) {
-            userInput = userInput.split(" ", 2)[1];
-
-            String description = userInput.split("/")[0];
-
-            String to = userInput.split("/")[1].replace("by ", "");
-
-            storeTask.add(new Deadline(description, to));
-
-        } else if (type.equals("event")) {
-            userInput = userInput.split(" ", 2)[1];
-
-            String description = userInput.split("/")[0];
-
-            String from = userInput.split("/")[1].replace("from ", "");
-            String to = userInput.split("/")[2].replace("to ", "");
-
-            storeTask.add(new Event(description, from, to));
+            storeTask.remove(index);
 
         } else {
-            throw new EchoIncorrectOption();
+
+            if (type.equals("todo")) {
+                userInput = userInput.split(" ", 2)[1];
+                storeTask.add(new Todo(userInput));
+
+            } else if (type.equals("deadline")) {
+                userInput = userInput.split(" ", 2)[1];
+
+                String description = userInput.split("/")[0];
+
+                String to = userInput.split("/")[1].replace("by ", "");
+
+                storeTask.add(new Deadline(description, to));
+
+            } else if (type.equals("event")) {
+                userInput = userInput.split(" ", 2)[1];
+
+                String description = userInput.split("/")[0];
+
+                String from = userInput.split("/")[1].replace("from ", "");
+                String to = userInput.split("/")[2].replace("to ", "");
+
+                storeTask.add(new Event(description, from, to));
+
+            } else {
+                throw new EchoIncorrectOption();
+            }
+
+            System.out.println("Got it! I've added this task: \n" + storeTask.get(storeTask.size() -1 ).toString());
+
         }
+
+        System.out.println("Now you have " + storeTask.size() + " in the list.");
 
     }
 
