@@ -1,9 +1,17 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
+//for file
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Echo {
+    private final static File SAVED_FILE = new File("Data/Echo.txt");
+
     public static void main(String[] args) {
+
+
         //Print welcoming messages
         welcomeMessage();
 
@@ -68,6 +76,11 @@ public class Echo {
             storeTask.get(elementIndex).setDone(false);
             System.out.println("OK, I've marked this task as not done yet:");
         }
+
+        //Generate the output in the right format
+        String output = generateOutput("replace", storeTask);
+        //store the output into a file
+        saveToFile("replace", output);
         System.out.println(storeTask.get(elementIndex).toString());
     }
 
@@ -82,6 +95,47 @@ public class Echo {
         throw new EchoIncorrectOption();
     }
 
+    //Method to be used to save text into a file based on the option given
+    private static void saveToFile(String option, String text) {
+        String fullPath = SAVED_FILE.getAbsolutePath();
+        try {
+            if (option.equals("replace")) {
+                //delete last line from textfile
+                FileWriter fw = new FileWriter(fullPath);
+                fw.write(text);
+                fw.close();
+            } else if (option.equals("append")) {
+                //append text to
+                FileWriter fw = new FileWriter(fullPath, true);
+                fw.write(text);
+                fw.close();
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error has occured. " + e.toString());
+        }
+    }
+
+
+    //Output to be generated for saving into a file
+    private static String generateOutput(String option, ArrayList<Task> storeTask) {
+        StringBuilder text = new StringBuilder();
+
+        if (option.equals("append")) {
+            int lastElementInt = storeTask.size() - 1;
+            text.append(storeTask.get(lastElementInt).outputToFile());
+            text.append("\n");
+
+        } else if (option.equals("replace")) {
+            for (Task task : storeTask) {
+                text.append(task.outputToFile());
+                text.append("\n");
+            }
+
+        }
+        return text.toString();
+    }
+
 
     private static void updateList(String type, ArrayList<Task> storeTask, String userInput) {
         if (type.equals("delete")) {
@@ -89,6 +143,11 @@ public class Echo {
 
             System.out.println("Noted. I've removed this task:\n" + storeTask.get(index).toString());
             storeTask.remove(index);
+
+            //Generate the output in the right format
+            String output = generateOutput("replace", storeTask);
+            //store the output into a file
+            saveToFile("replace", output);
         } else {
             userInput = userInput.split(" ", 2)[1];
             String description = userInput.split("/")[0];
@@ -106,10 +165,13 @@ public class Echo {
                     storeTask.add(new Event(description, from, to));
                 }
             }
-            System.out.println("Got it! I've added this task: \n" + storeTask.get(storeTask.size() - 1).toString());
+            String output = storeTask.get(storeTask.size() - 1).toString();
+            System.out.println("Got it! I've added this task: \n" + output);
+
+            output = generateOutput("append", storeTask);
+            saveToFile("append", output);
         }
         System.out.println("Now you have " + storeTask.size() + " in the list.");
+
     }
-
-
 }
