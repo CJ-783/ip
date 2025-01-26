@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//for file
+//for file management
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+//for time
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Echo {
     private final static File SAVED_FILE = new File("Data/Echo.txt");
 
     public static void main(String[] args) {
-
 
         //Print welcoming messages
         welcomeMessage();
@@ -155,12 +159,17 @@ public class Echo {
             switch (type) {
                 case "todo" -> storeTask.add(new Todo(userInput));
                 case "deadline" -> {
-                    String to = userInput.split("/")[1].replace("by ", "");
+                    String to = userInput.split("/by ")[1];
                     storeTask.add(new Deadline(description, to));
+
+//                    System.out.println(to);
+                    LocalDate d1 = LocalDate.parse("2019-12-01");
+                    System.out.println(d1.getDayOfWeek());
+
                 }
                 case "event" -> {
                     String from = userInput.split("/")[1].replace("from ", "");
-                    String to = userInput.split("/")[2].replace("to ", "");
+                    String to = userInput.split("/to ")[1];
 
                     storeTask.add(new Event(description, from, to));
                 }
