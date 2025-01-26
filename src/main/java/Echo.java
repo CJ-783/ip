@@ -162,9 +162,9 @@ public class Echo {
                     String to = userInput.split("/by ")[1];
                     storeTask.add(new Deadline(description, to));
 
-//                    System.out.println(to);
-                    LocalDate d1 = LocalDate.parse("2019-12-01");
-                    System.out.println(d1.getDayOfWeek());
+                    storeTask.get(storeTask.size() -1).setDateTime(to);
+                    System.out.println("this!");
+                    System.out.println(storeTask.get(storeTask.size() -1).getDateTime());
 
                 }
                 case "event" -> {
@@ -172,6 +172,10 @@ public class Echo {
                     String to = userInput.split("/to ")[1];
 
                     storeTask.add(new Event(description, from, to));
+
+                    storeTask.get(storeTask.size() -1).setDateTime(to);
+                    System.out.println("this!");
+                    System.out.println(storeTask.get(storeTask.size() -1).getDateTime());
                 }
             }
             String output = storeTask.get(storeTask.size() - 1).toString();

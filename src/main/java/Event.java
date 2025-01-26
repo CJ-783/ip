@@ -11,8 +11,9 @@ public class Event extends Task {
 
 
     public String outputToFile() {
-        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + "- " + this.to;
+        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + " - " + this.to;
     }
+
     @Override
     public String toString() {
 
