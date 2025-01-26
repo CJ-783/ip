@@ -160,11 +160,9 @@ public class Echo {
                 case "todo" -> storeTask.add(new Todo(userInput));
                 case "deadline" -> {
                     String to = userInput.split("/by ")[1];
-                    storeTask.add(new Deadline(description, to));
 
+                    storeTask.add(new Deadline(description, to));
                     storeTask.get(storeTask.size() -1).setDateTime(to);
-                    System.out.println("this!");
-                    System.out.println(storeTask.get(storeTask.size() -1).getDateTime());
 
                 }
                 case "event" -> {
@@ -172,10 +170,7 @@ public class Echo {
                     String to = userInput.split("/to ")[1];
 
                     storeTask.add(new Event(description, from, to));
-
                     storeTask.get(storeTask.size() -1).setDateTime(to);
-                    System.out.println("this!");
-                    System.out.println(storeTask.get(storeTask.size() -1).getDateTime());
                 }
             }
             String output = storeTask.get(storeTask.size() - 1).toString();
