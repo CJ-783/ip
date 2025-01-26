@@ -12,6 +12,16 @@ public class Task {
         this.isDone = false;
     }
 
+
+
+    public String getStatusInt() {
+        return isDone ? "1" : "0";
+    }
+
+    public String outputToFile() {
+        return "T" + " | " + this.getStatusInt() + " | " + this.getDescription();
+    }
+
     public boolean getStatus() {
         return isDone;
     }

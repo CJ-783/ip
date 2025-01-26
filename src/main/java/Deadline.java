@@ -7,9 +7,14 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+
+
+    public String outputToFile() {
+        return "D" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.by;
+    }
+
     @Override
     public String toString() {
-
         return "[D]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + "("+ "by: "  + this.by + ")";
     }
 

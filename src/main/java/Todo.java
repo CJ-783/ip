@@ -5,6 +5,9 @@ public class Todo extends Task{
         super(description);
     }
 
+    public String outputToFile() {
+        return "T" + " | " + this.getStatusInt() + " | " + this.getDescription();
+    }
     @Override
     public String toString() {
 
