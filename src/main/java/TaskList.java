@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    public int totalTask = 0;
+    private int totalTask = 0;
 
     ArrayList<Task> storeTask = new ArrayList<Task>();
 

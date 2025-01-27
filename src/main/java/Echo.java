@@ -45,6 +45,7 @@ public class Echo {
         taskList = new TaskList();
         storage = new Storage("Data/Echo.txt", taskList);
         parser = new Parser(ui, taskList, storage);
+        storage.loadData();
 
         //TODO: add this into the Ui.java
 //        Scanner reader = new Scanner(System.in);
