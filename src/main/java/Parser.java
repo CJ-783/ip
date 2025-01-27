@@ -80,15 +80,11 @@ public class Parser {
 
             switch (option) {
                 case "todo" -> {
-                    //TODO: REMOVE
-                    System.out.println("todo");
                     taskList.addTask(new Todo(userInput));
 
 
                 }
                 case "deadline" -> {
-                    //TODO: REMOVE
-                    System.out.println("deadline");
                     String to = userInput.split("/by ")[1];
 
                     taskList.addTask(new Deadline(description, to));
@@ -96,8 +92,6 @@ public class Parser {
 
                 }
                 case "event" -> {
-                    //TODO: REMOVE
-                    System.out.println("event");
                     String from = userInput.split("/")[1].replace("from ", "");
                     String to = userInput.split("/to ")[1];
                     taskList.addTask(new Event(description, from, to));
