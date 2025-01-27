@@ -9,7 +9,6 @@ public class Event extends Task {
         this.to = to;
     }
 
-
     public String outputToFile() {
         return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + " - " + this.to;
     }
