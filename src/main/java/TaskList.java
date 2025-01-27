@@ -38,7 +38,25 @@ public class TaskList {
 
     public void printElementString(int index) {
         System.out.println(storeTask.get(index).toString());
+    }
 
+    public String getElementString(int indext) {
+        return storeTask.get(indext).toString();
+    }
+
+    public String getElementOutputToFile(int index) {
+        return storeTask.get(index).outputToFile();
+    }
+
+    public String getAllOutputToFile() {
+        StringBuilder outputList = new StringBuilder();
+        String newline = "";
+        for (int i = 0; i < totalTask; i++) {
+            outputList.append(newline);
+            outputList.append(storeTask.get(i).outputToFile());
+            outputList.append("\n");
+        }
+        return outputList.toString();
     }
 
     public String toString() {

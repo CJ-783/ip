@@ -11,6 +11,7 @@ public class Echo {
     private Ui ui;
     private Parser parser;
     private TaskList taskList;
+    private Storage storage;
 
     private final static File SAVED_FILE = new File("Data/Echo.txt");
 
@@ -42,7 +43,8 @@ public class Echo {
     public Echo() {
         ui = new Ui();
         taskList = new TaskList();
-        parser = new Parser(ui, taskList);
+        storage = new Storage("Data/Echo.txt", taskList);
+        parser = new Parser(ui, taskList, storage);
 
         //TODO: add this into the Ui.java
 //        Scanner reader = new Scanner(System.in);

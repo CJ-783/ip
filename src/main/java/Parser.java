@@ -6,9 +6,11 @@ public class Parser {
     private TaskList taskList;
     private Ui ui;
 
-    Parser(Ui ui, TaskList taskList) {
+    private Storage storage;
+    Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
+        this.storage = storage;
     }
 
 
@@ -26,17 +28,16 @@ public class Parser {
             mark(userInput);
             return 1;
         } else {
-            int option = addRemoveList(userInput);
-            return option;
+            return addRemoveList(userInput);
         }
     }
 
-    private int unMark(String userInput) {
+    private void unMark(String userInput) {
         String index = userInput.split(" ")[1];
         int unmarkIndex = Integer.parseInt(index) - 1;
         taskList.setUnmark(unmarkIndex);
         ui.unmark(unmarkIndex, taskList);
-        return unmarkIndex;
+        storage.saveData("replace");
     }
 
     private void mark(String userInput) {
@@ -44,6 +45,7 @@ public class Parser {
         int markIndex = Integer.parseInt(index) - 1;
         taskList.setMark(markIndex);
         ui.mark(markIndex, taskList);
+        storage.saveData("replace");
     }
 
     private int addRemoveList(String userInput) {
@@ -70,6 +72,7 @@ public class Parser {
             int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
             ui.deleteFromList(index, taskList);
             taskList.removeTask(index);
+            storage.saveData("replace");
 
         } else {
             userInput = userInput.split(" ", 2)[1];
@@ -80,6 +83,7 @@ public class Parser {
                     //TODO: REMOVE
                     System.out.println("todo");
                     taskList.addTask(new Todo(userInput));
+
 
                 }
                 case "deadline" -> {
@@ -102,6 +106,7 @@ public class Parser {
                 }
             }
             ui.addToList(taskList);
+            storage.saveData("append");
         }
     }
 
