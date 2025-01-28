@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package echo.ui;
+
+import echo.tasklist.TaskList;
+
 import java.util.Scanner;
 
 /**
@@ -6,7 +9,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    Ui() {
+    public Ui() {
 
     }
 

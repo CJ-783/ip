@@ -1,3 +1,5 @@
+package echo.tasks;
+
 public class Event extends Task {
 
     String from;

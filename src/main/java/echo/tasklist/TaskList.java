@@ -1,3 +1,7 @@
+package echo.tasklist;
+
+import echo.tasks.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -6,7 +10,7 @@ public class TaskList {
 
     ArrayList<Task> storeTask = new ArrayList<Task>();
 
-    TaskList() {
+    public TaskList() {
 
     }
 

@@ -1,10 +1,12 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+package echo;
 
 //for file management
+import echo.parser.Parser;
+import echo.storage.Storage;
+import echo.tasklist.TaskList;
+import echo.ui.Ui;
+
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Echo {
 
@@ -13,7 +15,7 @@ public class Echo {
     private TaskList taskList;
     private Storage storage;
 
-    private final static File SAVED_FILE = new File("Data/Echo.txt");
+    private final static File SAVED_FILE = new File("Data/echo.Echo.txt");
 
     public static void main(String[] args) {
         new Echo().run();
@@ -43,7 +45,7 @@ public class Echo {
     public Echo() {
         ui = new Ui();
         taskList = new TaskList();
-        storage = new Storage("Data/Echo.txt", taskList);
+        storage = new Storage("Data/echo.Echo.txt", taskList);
         parser = new Parser(ui, taskList, storage);
         storage.loadData();
     }

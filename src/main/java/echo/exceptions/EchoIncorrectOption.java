@@ -1,3 +1,5 @@
+package echo.exceptions;
+
 public class EchoIncorrectOption extends Exception{
 
     public EchoIncorrectOption() {
