@@ -12,4 +12,5 @@ public class EventTest {
         Event e = new Event("Weekly meeting", "28/1/2025 1500", "28/1/2025 1700");
         assertEquals(expectedAnswer, e.toString());
     }
+
 }
