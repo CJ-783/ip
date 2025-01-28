@@ -15,3 +15,7 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+Echo.txt
+Data/echo.Echo.txt
+Data/Echo.txt
+text-ui-test/Data/Echo.txt
