@@ -83,25 +83,24 @@ public class Parser {
             storage.saveData("replace");
 
         } else {
-            userInput = userInput.split(" ", 2)[1];
-            String description = userInput.split("/")[0];
+            userInput = userInput.split(" ", 2)[1].trim();
+            String description = userInput.split("/")[0].trim();
 
             switch (option) {
                 case "todo" -> {
                     taskList.addTask(new Todo(userInput));
 
-
                 }
                 case "deadline" -> {
-                    String to = userInput.split("/by ")[1];
-
+                    String to = userInput.split("/by ")[1].trim();
                     taskList.addTask(new Deadline(description, to));
                     taskList.setDateTime(taskList.getTotalTask() - 1, to);
 
                 }
                 case "event" -> {
-                    String from = userInput.split("/")[1].replace("from ", "");
-                    String to = userInput.split("/to ")[1];
+                    String from = userInput.split("/from")[1];
+                    from = from.split("/to")[0].trim();
+                    String to = userInput.split("/to ")[1].trim();
                     taskList.addTask(new Event(description, from, to));
                     taskList.setDateTime(taskList.getTotalTask() - 1, to);
 
