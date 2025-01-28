@@ -1,3 +1,10 @@
+package echo.storage;
+
+import echo.tasklist.TaskList;
+import echo.tasks.Deadline;
+import echo.tasks.Event;
+import echo.tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,7 +17,7 @@ public class Storage {
 
     private TaskList taskList;
 
-    Storage(String filePath, TaskList taskList) {
+    public Storage(String filePath, TaskList taskList) {
         this.filePath = new File(filePath);
         this.taskList = taskList;
     }

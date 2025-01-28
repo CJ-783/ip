@@ -1,13 +1,21 @@
-/*
+package echo.parser;/*
 This class takes care of UNDERSTANDING user's input
  */
+
+import echo.exceptions.EchoIncorrectOption;
+import echo.storage.Storage;
+import echo.tasklist.TaskList;
+import echo.tasks.Deadline;
+import echo.tasks.Event;
+import echo.tasks.Todo;
+import echo.ui.Ui;
 
 public class Parser {
     private TaskList taskList;
     private Ui ui;
 
     private Storage storage;
-    Parser(Ui ui, TaskList taskList, Storage storage) {
+    public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
         this.storage = storage;
