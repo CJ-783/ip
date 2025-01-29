@@ -15,9 +15,9 @@ public class Task {
 
     public void setDateTime(String date) {
         List<String> formatDateString = Arrays.asList(
-                "yyyy/MM/dd", "dd/MM/yyyy", "yyyy/MM/dd HHmm", "dd/MM/yyyy HHmm",
-                "yyyy-MM-dd", "dd-MM-yyyy", "yyyy-MM-dd HHmm", "dd-MM-yyyy HHmm",
-                "yyyy/MM/d", "d/MM/yyyy", "yyyy/MM/d HHmm", "d/MM/yyyy HHmm");
+                "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
+                "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
+                "yyyy/M/d", "d/M/yyyy", "yyyy/M/d HHmm", "d/M/yyyy HHmm");
 
         for (int i = 0; i < formatDateString.size(); i++) {
             try {
