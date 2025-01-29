@@ -14,7 +14,6 @@ public class TaskTest {
         d.setDateTime("28/1/2025 1500");
 
         String dayOfWeek = d.getDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-
         assertEquals(dayOfWeek, expectedAnswer);
     }
 
@@ -25,7 +24,6 @@ public class TaskTest {
         d.setDateTime("28/12/2025 1500");
 
         String dayOfWeek = d.getDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-
         assertEquals(dayOfWeek, expectedAnswer);
     }
 
