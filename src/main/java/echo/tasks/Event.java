@@ -1,23 +1,31 @@
 package echo.tasks;
 
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
     String from;
-    String to;
+    String by;
 
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;
-        this.to = to;
+        super.setDeadlineDateTime(to);
+        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+    }
+
+    public String getDeadline() {
+        return this.by;
     }
 
     public String outputToFile() {
-        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + " - " + this.to;
+        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + " - " + this.by;
     }
 
     @Override
     public String toString() {
 
-        return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: " + this.to + ")";
+        return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: " + this.by + ")";
     }
 }

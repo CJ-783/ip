@@ -94,7 +94,7 @@ public class Parser {
                 case "deadline" -> {
                     String to = userInput.split("/by ")[1].trim();
                     taskList.addTask(new Deadline(description, to));
-                    taskList.setDateTime(taskList.getTotalTask() - 1, to);
+//                    taskList.setDateTime(taskList.getTotalTask() - 1, to);
 
                 }
                 case "event" -> {

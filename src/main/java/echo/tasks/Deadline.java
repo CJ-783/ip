@@ -1,12 +1,19 @@
 package echo.tasks;
 
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
 
     protected String by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        super.setDeadlineDateTime(by);
+        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public String getDeadline() {
+        return this.by;
     }
 
     public String outputToFile() {

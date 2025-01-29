@@ -29,12 +29,10 @@ public class Echo {
             try {
                 String userInputInt = ui.readCommand();
                 int userOption = parser.getOption(userInputInt);
-//
+
                 if (userOption == 0) {
                     isExit = true;
-                    System.out.println("BYEEE");
                 }
-
 
             } catch (Exception e) {
 

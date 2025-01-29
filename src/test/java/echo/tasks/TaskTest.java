@@ -11,9 +11,8 @@ public class TaskTest {
     public void testDateTimeDeadline() {
         String expectedAnswer = "Jan 28 2025";
         Deadline d = new Deadline("Weekly meeting", "28/1/2025 1500");
-        d.setDateTime("28/1/2025 1500");
 
-        String dayOfWeek = d.getDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String dayOfWeek = d.getDeadline();
         assertEquals(dayOfWeek, expectedAnswer);
     }
 
@@ -21,9 +20,9 @@ public class TaskTest {
     public void testDateTimeDeadline2() {
         String expectedAnswer = "Dec 28 2025";
         Deadline d = new Deadline("Weekly meeting", "28/12/2025 1500");
-        d.setDateTime("28/12/2025 1500");
 
-        String dayOfWeek = d.getDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+        String dayOfWeek = d.getDeadline();
         assertEquals(dayOfWeek, expectedAnswer);
     }
 

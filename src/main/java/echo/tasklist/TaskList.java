@@ -19,7 +19,7 @@ public class TaskList {
     }
 
     public void setDateTime(int index, String dateLine) {
-        storeTask.get(index).setDateTime(dateLine);
+        storeTask.get(index).setDeadlineDateTime(dateLine);
     }
 
     public void addTask(Task task) {

@@ -11,9 +11,9 @@ public class Task {
 
     protected String description;
     protected boolean isDone;
-    protected LocalDateTime dateTime;
+    protected LocalDateTime deadlineDateTime;
 
-    public void setDateTime(String date) {
+    public void setDeadlineDateTime(String date) {
         List<String> formatDateString = Arrays.asList(
                 "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
                 "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
@@ -22,7 +22,7 @@ public class Task {
         for (int i = 0; i < formatDateString.size(); i++) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateString.get(i));
-                this.dateTime = LocalDateTime.parse(date, formatter);
+                this.deadlineDateTime = LocalDateTime.parse(date, formatter);
                 break;
             } catch (DateTimeParseException e) {
                 continue;
@@ -35,8 +35,8 @@ public class Task {
         this.isDone = false;
     }
 
-    public LocalDateTime getDateTime() {
-        return this.dateTime;
+    public LocalDateTime getDeadlineDateTime() {
+        return this.deadlineDateTime;
     }
 
     public String getStatusInt() {
