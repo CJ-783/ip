@@ -30,7 +30,9 @@ public class Echo {
     public Echo() {
         ui = new Ui();
         taskList = new TaskList();
-        storage = new Storage("Data/echo.Echo.txt", taskList);
+
+        storage = new Storage("Data/Echo.txt", taskList);
+
         parser = new Parser(ui, taskList, storage);
         storage.loadData();
     }

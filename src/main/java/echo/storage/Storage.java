@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import echo.tasklist.TaskList;
@@ -34,7 +36,7 @@ public class Storage {
     /**
      * This method retrieves the task list from the file.
      */
-    public void loadData()   {
+    public void loadData() {
         String[] taskArray;
         String type;
         String description;
@@ -69,8 +71,15 @@ public class Storage {
 
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
+            setUpFile();
         }
+    }
+
+    private void setUpFile() {
+        System.out.println("Creating Echo.txt file...");
+        File echoFile = new File("Data/Echo.txt");
+        echoFile.getParentFile().mkdir();
+        System.out.println("File created!");
     }
 
     /**
@@ -85,8 +94,9 @@ public class Storage {
 
     /**
      * This method write to the file
-     * @param option    Determines whether to replace the entire task list or to just append into the file
-     * @param text      The text to replace or append into the file
+     *
+     * @param option Determines whether to replace the entire task list or to just append into the file
+     * @param text   The text to replace or append into the file
      */
     private void saveToFile(String option, String text) {
         String fullPath = filePath.getAbsolutePath();
@@ -109,8 +119,8 @@ public class Storage {
     /**
      * This method generates the correct output format to be added into the file.
      *
-     * @param option    Determines whether to generate the entire list, or just an additional task to be added
-     * @return          The entire list String to be added into the file
+     * @param option Determines whether to generate the entire list, or just an additional task to be added
+     * @return The entire list String to be added into the file
      */
     private String generateOutput(String option) {
         StringBuilder text = new StringBuilder();

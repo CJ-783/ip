@@ -1,8 +1,10 @@
 package echo.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import echo.tasklist.TaskList;
+import echo.tasks.Task;
 
 /**
  * This class takes care of user interaction.
@@ -41,7 +43,7 @@ public class Ui {
         return reader.nextLine();
     }
 
-    public void findBook(ArrayList<Task> tasklists) {
+    public void findBook (ArrayList<Task> tasklists) {
         System.out.println("Here are the matching tasks in your list:");
         for (int i = 0; i < tasklists.size(); i++) {
             System.out.println(tasklists.get(i).toString());
