@@ -41,6 +41,13 @@ public class Ui {
         return reader.nextLine();
     }
 
+    public void findBook(ArrayList<Task> tasklists) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasklists.size(); i++) {
+            System.out.println(tasklists.get(i).toString());
+        }
+    }
+
 
     /**
      * Display a message stating that the task the user input has been deleted
