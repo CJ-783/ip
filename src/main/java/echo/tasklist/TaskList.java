@@ -1,14 +1,14 @@
 package echo.tasklist;
 
-import echo.tasks.Task;
-
 import java.util.ArrayList;
+
+import echo.tasks.Task;
 
 public class TaskList {
 
     private int totalTask = 0;
 
-    ArrayList<Task> storeTask = new ArrayList<Task>();
+    private ArrayList<Task> storeTask = new ArrayList<Task>();
 
     public TaskList() {
 

@@ -3,7 +3,6 @@ package echo.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +11,11 @@ public class Task {
     protected String description;
     protected boolean isDone;
     protected LocalDateTime deadlineDateTime;
+
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
+    }
 
     public void setDeadlineDateTime(String date) {
         List<String> formatDateString = Arrays.asList(
@@ -30,10 +34,7 @@ public class Task {
         }
     }
 
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-    }
+
 
     public LocalDateTime getDeadlineDateTime() {
         return this.deadlineDateTime;

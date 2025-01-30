@@ -1,8 +1,8 @@
 package echo.ui;
 
-import echo.tasklist.TaskList;
-
 import java.util.Scanner;
+
+import echo.tasklist.TaskList;
 
 /**
  * This class takes care of user inputs + displaying messages to the user

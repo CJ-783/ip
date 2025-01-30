@@ -2,7 +2,7 @@ package echo.tasks;
 
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected String by;
 
@@ -22,7 +22,7 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        return "[D]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " ("+ "by: "  + this.by + ")";
+        return "[D]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (" + "by: " + this.by + ")";
     }
 
 }
