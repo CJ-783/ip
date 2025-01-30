@@ -1,15 +1,15 @@
 package echo.storage;
 
-import echo.tasklist.TaskList;
-import echo.tasks.Deadline;
-import echo.tasks.Event;
-import echo.tasks.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import echo.tasklist.TaskList;
+import echo.tasks.Deadline;
+import echo.tasks.Event;
+import echo.tasks.Todo;
 
 public class Storage {
 
@@ -22,7 +22,7 @@ public class Storage {
         this.taskList = taskList;
     }
 
-    public void loadData()  {
+    public void loadData() {
 
         String[] taskArray;
         String type;
@@ -58,7 +58,7 @@ public class Storage {
 
             }
         } catch (FileNotFoundException e) {
-
+            System.out.println("File not found!");
         }
     }
 
@@ -94,6 +94,6 @@ public class Storage {
             text.append("\n");
             return text.toString();
         }
-        return taskList.getAllOutputToFile() ;
+        return taskList.getAllOutputToFile();
     }
 }

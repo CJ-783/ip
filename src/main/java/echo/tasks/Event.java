@@ -4,8 +4,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    String from;
-    String by;
+    private String from;
+    private String by;
 
     public Event(String description, String from, String to) {
         super(description);
@@ -26,6 +26,7 @@ public class Event extends Task {
     @Override
     public String toString() {
 
-        return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: " + this.by + ")";
+        return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: "
+                + this.by + ")";
     }
 }
