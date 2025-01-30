@@ -34,8 +34,7 @@ public class Storage {
     /**
      * This method retrieves the task list from the file.
      */
-    public void loadData()  {
-
+    public void loadData() {
         String[] taskArray;
         String type;
         String description;

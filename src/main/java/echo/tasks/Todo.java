@@ -1,13 +1,10 @@
 package echo.tasks;
 
-<<<<<<< HEAD
-public class Todo extends Task {
-=======
+
 /**
  * Represents a task (to-do) without any deadline or time constraint.
  */
-public class Todo extends Task{
->>>>>>> branch-A-JavaDoc
+public class Todo extends Task {
 
     /**
      * Constructs a task with the given description.

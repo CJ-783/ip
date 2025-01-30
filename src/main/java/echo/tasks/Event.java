@@ -50,12 +50,9 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-<<<<<<< HEAD
+
 
         return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: "
                 + this.by + ")";
-=======
-        return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: " + this.by + ")";
->>>>>>> branch-A-JavaDoc
     }
 }
