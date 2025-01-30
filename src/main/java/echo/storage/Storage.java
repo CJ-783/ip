@@ -11,18 +11,30 @@ import echo.tasks.Deadline;
 import echo.tasks.Event;
 import echo.tasks.Todo;
 
+/**
+ * This class is responsible for the storing and retrieving of the task list.
+ */
 public class Storage {
 
     private File filePath;
 
     private TaskList taskList;
 
+    /**
+     * A constructor that assign the file-path and task-list into the variable.
+     *
+     * @param filePath the file path to store the task list.
+     * @param taskList the taskList object to manage the task lists.
+     */
     public Storage(String filePath, TaskList taskList) {
         this.filePath = new File(filePath);
         this.taskList = taskList;
     }
 
-    public void loadData() {
+    /**
+     * This method retrieves the task list from the file.
+     */
+    public void loadData()  {
 
         String[] taskArray;
         String type;
@@ -62,11 +74,21 @@ public class Storage {
         }
     }
 
+    /**
+     * This method generates the correct text, then either append or replaces the entire file
+     *
+     * @param option Determines whether to replace the entire task list or to just append into the file.
+     */
     public void saveData(String option) {
         String text = generateOutput(option);
         saveToFile(option, text);
     }
 
+    /**
+     * This method write to the file
+     * @param option    Determines whether to replace the entire task list or to just append into the file
+     * @param text      The text to replace or append into the file
+     */
     private void saveToFile(String option, String text) {
         String fullPath = filePath.getAbsolutePath();
         try {
@@ -85,7 +107,12 @@ public class Storage {
     }
 
 
-    //Output to be generated for saving into a file
+    /**
+     * This method generates the correct output format to be added into the file.
+     *
+     * @param option    Determines whether to generate the entire list, or just an additional task to be added
+     * @return          The entire list String to be added into the file
+     */
     private String generateOutput(String option) {
         StringBuilder text = new StringBuilder();
 

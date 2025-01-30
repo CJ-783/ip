@@ -8,6 +8,12 @@ import echo.storage.Storage;
 import echo.tasklist.TaskList;
 import echo.ui.Ui;
 
+
+/**
+ * The Echo class serves as the main entry point for the Echo Chat bot
+ * @author Cheng Jing
+ */
+
 public class Echo {
 
     private Ui ui;
@@ -17,6 +23,9 @@ public class Echo {
 
     //private static final File SAVED_FILE = new File("Data/echo.Echo.txt");
 
+    /**
+     * Initializes the ui, tasklist, storage, and parser object.
+     */
     public Echo() {
         ui = new Ui();
         taskList = new TaskList();
@@ -29,6 +38,10 @@ public class Echo {
         new Echo().run();
     }
 
+    /**
+     * The entrypoint for running the program.
+     *
+     */
     public void run() {
         ui.welcomeMessage();
         boolean isExit = false;

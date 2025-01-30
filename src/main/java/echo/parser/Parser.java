@@ -1,7 +1,4 @@
 package echo.parser;
-/*
-This class takes care of UNDERSTANDING user's input
- */
 
 import echo.exceptions.EchoIncorrectOption;
 import echo.storage.Storage;
@@ -11,12 +8,21 @@ import echo.tasks.Event;
 import echo.tasks.Todo;
 import echo.ui.Ui;
 
+/**
+ * The Parser class is meant as a way to understand the user input
+ */
+
 public class Parser {
     private TaskList taskList;
     private Ui ui;
 
     private Storage storage;
 
+    /**
+     * @param ui       The ui class meant for responding to the user input
+     * @param taskList The task list that contains all the task that the user has created
+     * @param storage  The storage class meant to handle retrieving and storing of the task list
+     */
     public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
@@ -24,6 +30,12 @@ public class Parser {
     }
 
 
+    /**
+     * This method determines the option that the user has chosen.
+     *
+     * @param userInput The user input.
+     * @return          An integer for the Echo class to determine if the user has chosen to exit the program
+     */
     public int getOption(String userInput) {
         if (userInput.equals("bye")) {
             ui.exitMessage();
@@ -42,6 +54,11 @@ public class Parser {
         }
     }
 
+    /**
+     * This method is responsible for un-marking the user task on the task list
+     *
+     * @param userInput The index of the task in the task list to un-mark.
+     */
     private void unMark(String userInput) {
         String index = userInput.split(" ")[1];
         int unmarkIndex = Integer.parseInt(index) - 1;
@@ -50,6 +67,11 @@ public class Parser {
         storage.saveData("replace");
     }
 
+    /**
+     * This method is responsible for marking the user task on the task list
+     *
+     * @param userInput The index of the task in the task list to mark.
+     */
     private void mark(String userInput) {
         String index = userInput.split(" ")[1];
         int markIndex = Integer.parseInt(index) - 1;
@@ -58,6 +80,12 @@ public class Parser {
         storage.saveData("replace");
     }
 
+    /**
+     * This method is used to determine if the user entered an incorrect input.
+     *
+     * @param userInput The index of the task in the task list to add or remove.
+     * @return          An integer based on whether the user entered an incorrect input.
+     */
     private int addRemoveList(String userInput) {
         String option = userInput.split(" ")[0];
 
@@ -75,6 +103,11 @@ public class Parser {
         }
     }
 
+    /**
+     * This method is to update the task list (i.e. delete/add).
+     *
+     * @param userInput The index of the task in the task list.
+     */
     private void updateList(String userInput) {
         String option = userInput.split(" ")[0];
 
@@ -112,6 +145,12 @@ public class Parser {
         }
     }
 
+    /**
+     * This method decides whether the option that the user key in is valid.
+     *
+     * @param userInput             The user input that the user keyed in
+     * @throws EchoIncorrectOption  Throws an incorrect option exception when the user enter an invalid option
+     */
     private void validOption(String userInput) throws EchoIncorrectOption {
         String[] correctOptions = {"delete", "todo", "deadline", "event"};
 
