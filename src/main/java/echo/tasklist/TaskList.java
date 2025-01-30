@@ -14,6 +14,18 @@ public class TaskList {
 
     }
 
+    public ArrayList<Task> findTask(String task) {
+        ArrayList<Task> taskFound = new ArrayList<>();
+        String currentTask = "";
+        for (int i = 0; i < storeTask.size(); i++) {
+            currentTask = storeTask.get(i).getDescription();
+            if (currentTask.contains(task)) {
+                taskFound.add(storeTask.get(i));
+            }
+        }
+        return taskFound;
+    }
+
     public int getTotalTask() {
         return totalTask;
     }

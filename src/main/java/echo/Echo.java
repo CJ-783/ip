@@ -1,6 +1,7 @@
 package echo;
 
 //for file management
+
 import echo.parser.Parser;
 import echo.storage.Storage;
 import echo.tasklist.TaskList;
@@ -33,9 +34,7 @@ public class Echo {
                 if (userOption == 0) {
                     isExit = true;
                 }
-
             } catch (Exception e) {
-
             }
         }
     }

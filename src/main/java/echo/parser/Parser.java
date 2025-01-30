@@ -2,18 +2,20 @@ package echo.parser;/*
 This class takes care of UNDERSTANDING user's input
  */
 
+import java.util.ArrayList;
+
 import echo.exceptions.EchoIncorrectOption;
 import echo.storage.Storage;
 import echo.tasklist.TaskList;
 import echo.tasks.Deadline;
 import echo.tasks.Event;
+import echo.tasks.Task;
 import echo.tasks.Todo;
 import echo.ui.Ui;
 
 public class Parser {
     private TaskList taskList;
     private Ui ui;
-
     private Storage storage;
     public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
@@ -21,23 +23,34 @@ public class Parser {
         this.storage = storage;
     }
 
-
     public int getOption(String userInput) {
-        if (userInput.equals("bye")) {
+        String userOption = userInput.split(" ")[0].trim().toLowerCase();
+
+        if (userOption.equals("bye")) {
             ui.exitMessage();
             return 0;
-        } else if (userInput.equals("list")) {
+        } else if (userOption.equals("list")) {
             ui.printList(taskList);
             return 1;
-        } else if (userInput.contains("unmark")) {
+        } else if (userOption.equals("unmark")) {
             unMark(userInput);
             return 1;
-        } else if (userInput.contains("mark")) {
+        } else if (userOption.equals("mark")) {
             mark(userInput);
+            return 1;
+        } else if (userOption.equals("find")) {
+            String userDesc = userInput.split(" ")[1].trim().toLowerCase();
+            findBook(userDesc);
+
             return 1;
         } else {
             return addRemoveList(userInput);
         }
+    }
+
+    private void findBook(String userDesc) {
+        ArrayList<Task> tasksFound = this.taskList.findTask(userDesc);
+        ui.findBook(tasksFound);
     }
 
     private void unMark(String userInput) {
@@ -55,6 +68,8 @@ public class Parser {
         ui.mark(markIndex, taskList);
         storage.saveData("replace");
     }
+
+
 
     private int addRemoveList(String userInput) {
         String option = userInput.split(" ")[0];

@@ -1,7 +1,9 @@
 package echo.ui;
 
 import echo.tasklist.TaskList;
+import echo.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -28,6 +30,13 @@ public class Ui {
     public String readCommand() {
         Scanner reader = new Scanner(System.in);
         return reader.nextLine();
+    }
+
+    public void findBook(ArrayList<Task> tasklists) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasklists.size(); i++) {
+            System.out.println(tasklists.get(i).toString());
+        }
     }
 
 
