@@ -1,4 +1,5 @@
-package echo.parser;/*
+package echo.parser;
+/*
 This class takes care of UNDERSTANDING user's input
  */
 
@@ -15,6 +16,7 @@ public class Parser {
     private Ui ui;
 
     private Storage storage;
+
     public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
@@ -87,24 +89,23 @@ public class Parser {
             String description = userInput.split("/")[0].trim();
 
             switch (option) {
-                case "todo" -> {
-                    taskList.addTask(new Todo(userInput));
+            case "todo" -> {
+                taskList.addTask(new Todo(userInput));
 
-                }
-                case "deadline" -> {
-                    String to = userInput.split("/by ")[1].trim();
-                    taskList.addTask(new Deadline(description, to));
-//                    taskList.setDateTime(taskList.getTotalTask() - 1, to);
+            }
+            case "deadline" -> {
+                String to = userInput.split("/by ")[1].trim();
+                taskList.addTask(new Deadline(description, to));
+                //taskList.setDateTime(taskList.getTotalTask() - 1, to);
 
-                }
-                case "event" -> {
-                    String from = userInput.split("/from")[1];
-                    from = from.split("/to")[0].trim();
-                    String to = userInput.split("/to ")[1].trim();
-                    taskList.addTask(new Event(description, from, to));
-                    taskList.setDateTime(taskList.getTotalTask() - 1, to);
-
-                }
+            }
+            case "event" -> {
+                String from = userInput.split("/from")[1];
+                from = from.split("/to")[0].trim();
+                String to = userInput.split("/to ")[1].trim();
+                taskList.addTask(new Event(description, from, to));
+                taskList.setDateTime(taskList.getTotalTask() - 1, to);
+            }
             }
             ui.addToList(taskList);
             storage.saveData("append");
