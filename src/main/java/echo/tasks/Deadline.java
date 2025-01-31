@@ -19,7 +19,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         super.setDeadlineDateTime(by);
-        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
 
     /**

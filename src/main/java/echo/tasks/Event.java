@@ -21,7 +21,8 @@ public class Event extends Task {
         super(description);
         this.from = from;
         super.setDeadlineDateTime(to);
-        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+//        this.by = to;
+        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
 
     }
 
@@ -40,7 +41,7 @@ public class Event extends Task {
      * @return A formatted string representing the event task details for file storage.
      */
     public String outputToFile() {
-        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + "| " + this.from + " - " + this.by;
+        return "E" + " | " + this.getStatusInt() + " | " + this.getDescription() + " | " + this.from + " - " + this.by;
     }
 
     /**

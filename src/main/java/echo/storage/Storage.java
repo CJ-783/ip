@@ -60,8 +60,9 @@ public class Storage {
                     taskList.addTask(new Deadline(description, to));
 
                 } else if (type.equals("E")) {
-                    from = taskArray[3].trim();
-                    to = taskArray[4].trim();
+                    String duration = taskArray[3].trim();
+                    from = duration.split("-")[0].trim();
+                    to = duration.split("-")[1].trim();
                     taskList.addTask(new Event(description, from, to));
                 }
 

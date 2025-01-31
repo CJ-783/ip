@@ -31,7 +31,7 @@ public class Task {
      * @param date The string representing the deadline in various formats.
      */
     public void setDeadlineDateTime(String date) {
-        List<String> formatDateString = Arrays.asList(
+        List<String> formatDateString = Arrays.asList("MMM d yyyy HHmm",
                 "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
                 "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
                 "yyyy/M/d", "d/M/yyyy", "yyyy/M/d HHmm", "d/M/yyyy HHmm");
