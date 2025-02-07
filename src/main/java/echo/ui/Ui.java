@@ -43,11 +43,18 @@ public class Ui {
         return reader.nextLine();
     }
 
-    public void findBook (ArrayList<Task> tasklists) {
-        System.out.println("Here are the matching tasks in your list:");
-        for (int i = 0; i < tasklists.size(); i++) {
-            System.out.println(tasklists.get(i).toString());
+    public String findTask (ArrayList<Task> tasklists) {
+        if (tasklists.isEmpty()) {
+            return "No Task found!";
         }
+        String startSentence = "Here are the matching tasks in your list:";
+        String tasks = "";
+//        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasklists.size(); i++) {
+            tasks += tasklists.get(i).toString() + "\n";
+//            System.out.println(tasklists.get(i).toString());
+        }
+        return startSentence + "\n" + tasks;
     }
 
 
@@ -57,9 +64,11 @@ public class Ui {
      * @param index
      * @param taskList
      */
-    public void deleteFromList(int index, TaskList taskList) {
-        System.out.println("Gotcha! The following has been deleted!");
-        taskList.printElementString(index);
+    public String deleteFromList(int index, TaskList taskList) {
+        String startSentence = "Gotcha! The following has been deleted!";
+//        System.out.println("Gotcha! The following has been deleted!");
+        return startSentence + "\n" + taskList.getElementString(index);
+//        taskList.printElementString(index);
     }
 
 
@@ -68,9 +77,11 @@ public class Ui {
      *
      * @param taskList The task list containing the task
      */
-    public void addToList(TaskList taskList) {
-        System.out.println("Got it! I've added this task:");
-        taskList.printElementString(taskList.getTotalTask() - 1);
+    public String addToList(TaskList taskList) {
+        String startSentence = "Gotcha! I've added this task:";
+//        System.out.println("Got it! I've added this task:");
+        return startSentence + "\n" + taskList.getElementString(taskList.getTotalTask() - 1);
+//        taskList.printElementString(taskList.getTotalTask() - 1);
     }
 
     /**
@@ -78,11 +89,13 @@ public class Ui {
      *
      * @param taskList The Task list to be printed
      */
-    public void printList(TaskList taskList) {
+    public String printList(TaskList taskList) {
         if (Integer.valueOf(taskList.getTotalTask()).equals(0)) {
-            System.out.println("The list is empty! Add in something!");
+            return "The list is empty! Add in something!";
+//            System.out.println("The list is empty! Add in something!");
         } else {
-            System.out.println(taskList);
+            return taskList.toString();
+//            System.out.println(taskList);
         }
     }
 
@@ -92,9 +105,11 @@ public class Ui {
      * @param index     The index of the task to be unmarked.
      * @param taskList  The task list containing the tasks.
      */
-    public void unmark(int index, TaskList taskList) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        taskList.printElementString(index);
+    public String unmark(int index, TaskList taskList) {
+        String startSentence = "OK, I've marked this task as not done yet:";
+//        System.out.println("OK, I've marked this task as not done yet:");
+        return startSentence + "\n" + taskList.getElementString(index);
+//        taskList.printElementString(index);
     }
 
     /**
@@ -103,9 +118,11 @@ public class Ui {
      * @param index     The index of the task to be marked.
      * @param taskList  The task list containing the tasks.
      */
-    public void mark(int index, TaskList taskList) {
-        System.out.println("Nice! Marked!");
-        taskList.printElementString(index);
+    public String mark(int index, TaskList taskList) {
+        String startSentence = "Nice! Marked!";
+//        System.out.println("Nice! Marked!");
+//        taskList.printElementString(index);
+        return startSentence + "\n" + taskList.getElementString(index);
     }
 
     /**
