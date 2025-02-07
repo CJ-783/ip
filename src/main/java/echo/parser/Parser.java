@@ -36,37 +36,34 @@ public class Parser {
      * This method determines the option that the user has chosen.
      *
      * @param userInput The user input.
-     * @return          An integer for the Echo class to determine if the user has chosen to exit the program
+     * @return An integer for the Echo class to determine if the user has chosen to exit the program
      */
-    public int getOption(String userInput) {
+    public String getOption(String userInput) {
         String userOption = userInput.split(" ")[0].trim().toLowerCase();
 
         if (userOption.equals("bye")) {
-            ui.exitMessage();
-            return 0;
+            return "See you next time!";
+//            ui.exitMessage();
+//            return 0;
         } else if (userOption.equals("list")) {
-            ui.printList(taskList);
-            return 1;
+            return ui.printList(taskList);
         } else if (userOption.equals("unmark")) {
-            unMark(userInput);
-            return 1;
+            return unMark(userInput);
         } else if (userOption.equals("mark")) {
-            mark(userInput);
-            return 1;
+            return mark(userInput);
         } else if (userOption.equals("find")) {
             String userDesc = userInput.split(" ")[1].trim().toLowerCase();
-            findBook(userDesc);
-
-            return 1;
+            return findTask(userDesc);
         } else {
             return addRemoveList(userInput);
         }
+
     }
 
 
-    private void findBook(String userDesc) {
+    private String findTask(String userDesc) {
         ArrayList<Task> tasksFound = this.taskList.findTask(userDesc);
-        ui.findBook(tasksFound);
+        return ui.findTask(tasksFound);
     }
 
     /**
@@ -74,12 +71,12 @@ public class Parser {
      *
      * @param userInput The index of the task in the task list to un-mark.
      */
-    private void unMark(String userInput) {
+    private String unMark(String userInput) {
         String index = userInput.split(" ")[1];
         int unmarkIndex = Integer.parseInt(index) - 1;
         taskList.setUnmark(unmarkIndex);
-        ui.unmark(unmarkIndex, taskList);
         storage.saveData("replace");
+        return ui.unmark(unmarkIndex, taskList);
     }
 
     /**
@@ -87,35 +84,35 @@ public class Parser {
      *
      * @param userInput The index of the task in the task list to mark.
      */
-    private void mark(String userInput) {
+    private String mark(String userInput) {
         String index = userInput.split(" ")[1];
         int markIndex = Integer.parseInt(index) - 1;
         taskList.setMark(markIndex);
-        ui.mark(markIndex, taskList);
         storage.saveData("replace");
+        return ui.mark(markIndex, taskList);
     }
 
     /**
      * This method is used to determine if the user entered an incorrect input.
      *
      * @param userInput The index of the task in the task list to add or remove.
-     * @return          An integer based on whether the user entered an incorrect input.
+     * @return An integer based on whether the user entered an incorrect input.
      */
-    private int addRemoveList(String userInput) {
+    private String addRemoveList(String userInput) {
         String option = userInput.split(" ")[0];
 
         try {
             validOption(option);
-            updateList(userInput);
-            return 1;
+            return updateList(userInput);
 
         } catch (EchoIncorrectOption err) {
             ui.errorMessage("This option doesn't exist! Please try again");
-            return -1;
+            return "This option doesn't exist! Please try again";
         } catch (ArrayIndexOutOfBoundsException err) {
             ui.errorMessage("Do remember to add the description");
-            return -2;
+            return "Do remember to add the description!";
         }
+
     }
 
     /**
@@ -123,14 +120,14 @@ public class Parser {
      *
      * @param userInput The index of the task in the task list.
      */
-    private void updateList(String userInput) {
+    private String updateList(String userInput) {
         String option = userInput.split(" ")[0];
 
         if (option.equals("delete")) {
             int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-            ui.deleteFromList(index, taskList);
             taskList.removeTask(index);
             storage.saveData("replace");
+            return ui.deleteFromList(index, taskList);
 
         } else {
             userInput = userInput.split(" ", 2)[1].trim();
@@ -155,16 +152,17 @@ public class Parser {
                 taskList.setDateTime(taskList.getTotalTask() - 1, to);
             }
             }
-            ui.addToList(taskList);
             storage.saveData("append");
+            return ui.addToList(taskList);
+
         }
     }
 
     /**
      * This method decides whether the option that the user key in is valid.
      *
-     * @param userInput             The user input that the user keyed in
-     * @throws EchoIncorrectOption  Throws an incorrect option exception when the user enter an invalid option
+     * @param userInput The user input that the user keyed in
+     * @throws EchoIncorrectOption Throws an incorrect option exception when the user enter an invalid option
      */
     private void validOption(String userInput) throws EchoIncorrectOption {
         String[] correctOptions = {"delete", "todo", "deadline", "event"};

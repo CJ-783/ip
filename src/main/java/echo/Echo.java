@@ -45,22 +45,26 @@ public class Echo {
      * The entrypoint for running the program.
      *
      */
+    public String getResponse(String userInput) {
+        return parser.getOption(userInput);
+    }
     public void run() {
-        ui.welcomeMessage();
-        boolean isExit = false;
 
-        while (!isExit) {
-            try {
-                String userInputInt = ui.readCommand();
-                int userOption = parser.getOption(userInputInt);
+//        ui.welcomeMessage();
+//        boolean isExit = false;
 
-                if (userOption == 0) {
-                    isExit = true;
-                }
-            } catch (Exception e) {
-                ui.errorMessage(e.toString());
-            }
-        }
+//        while (!isExit) {
+//            try {
+//                String userInputInt = ui.readCommand();
+//                int userOption = parser.getOption(userInputInt);
+//
+//                if (userOption == 0) {
+//                    isExit = true;
+//                }
+//            } catch (Exception e) {
+//                ui.errorMessage(e.toString());
+//            }
+//        }
     }
 
 
