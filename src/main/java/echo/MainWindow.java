@@ -20,7 +20,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duke duke;
+//    private Duke duke;
 
     private Echo echo = new Echo();
 
@@ -35,9 +35,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Duke instance */
-    public void setDuke(Duke d) {
-        duke = d;
-    }
+//    public void setDuke(Duke d) {
+//        duke = d;
+//    }
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
@@ -46,8 +46,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
-        response = echo.getResponse(input);
+//        String response = duke.getResponse(input);
+        String response = echo.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
