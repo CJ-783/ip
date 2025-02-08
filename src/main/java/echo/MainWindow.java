@@ -20,8 +20,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-//    private Duke duke;
-
     private Echo echo = new Echo();
 
 
@@ -33,11 +31,6 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         welcomeMessgae();
     }
-
-    /** Injects the Duke instance */
-//    public void setDuke(Duke d) {
-//        duke = d;
-//    }
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
