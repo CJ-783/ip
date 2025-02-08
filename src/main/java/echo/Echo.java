@@ -50,21 +50,7 @@ public class Echo {
     }
     public void run() {
 
-//        ui.welcomeMessage();
-//        boolean isExit = false;
 
-//        while (!isExit) {
-//            try {
-//                String userInputInt = ui.readCommand();
-//                int userOption = parser.getOption(userInputInt);
-//
-//                if (userOption == 0) {
-//                    isExit = true;
-//                }
-//            } catch (Exception e) {
-//                ui.errorMessage(e.toString());
-//            }
-//        }
     }
 
 
