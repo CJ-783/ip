@@ -67,6 +67,7 @@ public class Ui {
     public String deleteFromList(int index, TaskList taskList) {
         String startSentence = "Gotcha! The following has been deleted!";
 //        System.out.println("Gotcha! The following has been deleted!");
+        assert index > -1: "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
 //        taskList.printElementString(index);
     }
@@ -108,6 +109,7 @@ public class Ui {
     public String unmark(int index, TaskList taskList) {
         String startSentence = "OK, I've marked this task as not done yet:";
 //        System.out.println("OK, I've marked this task as not done yet:");
+        assert index > -1: "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
 //        taskList.printElementString(index);
     }
@@ -122,6 +124,7 @@ public class Ui {
         String startSentence = "Nice! Marked!";
 //        System.out.println("Nice! Marked!");
 //        taskList.printElementString(index);
+        assert index > -1: "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
     }
 
