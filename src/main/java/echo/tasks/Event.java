@@ -22,8 +22,6 @@ public class Event extends Task {
         this.from = from;
         super.setDeadlineDateTime(to);
         this.by = to;
-//        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
-
     }
 
     /**

@@ -49,10 +49,8 @@ public class Ui {
         }
         String startSentence = "Here are the matching tasks in your list:";
         String tasks = "";
-//        System.out.println("Here are the matching tasks in your list:");
         for (int i = 0; i < tasklists.size(); i++) {
             tasks += tasklists.get(i).toString() + "\n";
-//            System.out.println(tasklists.get(i).toString());
         }
         return startSentence + "\n" + tasks;
     }
@@ -66,9 +64,7 @@ public class Ui {
      */
     public String deleteFromList(int index, TaskList taskList) {
         String startSentence = "Gotcha! The following has been deleted!";
-//        System.out.println("Gotcha! The following has been deleted!");
         return startSentence + "\n" + taskList.getElementString(index);
-//        taskList.printElementString(index);
     }
 
 
@@ -79,9 +75,8 @@ public class Ui {
      */
     public String addToList(TaskList taskList) {
         String startSentence = "Gotcha! I've added this task:";
-//        System.out.println("Got it! I've added this task:");
+
         return startSentence + "\n" + taskList.getElementString(taskList.getTotalTask() - 1);
-//        taskList.printElementString(taskList.getTotalTask() - 1);
     }
 
     /**
@@ -92,10 +87,8 @@ public class Ui {
     public String printList(TaskList taskList) {
         if (Integer.valueOf(taskList.getTotalTask()).equals(0)) {
             return "The list is empty! Add in something!";
-//            System.out.println("The list is empty! Add in something!");
         } else {
             return taskList.toString();
-//            System.out.println(taskList);
         }
     }
 
@@ -107,9 +100,7 @@ public class Ui {
      */
     public String unmark(int index, TaskList taskList) {
         String startSentence = "OK, I've marked this task as not done yet:";
-//        System.out.println("OK, I've marked this task as not done yet:");
         return startSentence + "\n" + taskList.getElementString(index);
-//        taskList.printElementString(index);
     }
 
     /**
@@ -120,8 +111,6 @@ public class Ui {
      */
     public String mark(int index, TaskList taskList) {
         String startSentence = "Nice! Marked!";
-//        System.out.println("Nice! Marked!");
-//        taskList.printElementString(index);
         return startSentence + "\n" + taskList.getElementString(index);
     }
 
