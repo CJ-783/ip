@@ -43,8 +43,7 @@ public class Parser {
 
         if (userOption.equals("bye")) {
             return "See you next time!";
-//            ui.exitMessage();
-//            return 0;
+
         } else if (userOption.equals("list")) {
             return ui.printList(taskList);
         } else if (userOption.equals("unmark")) {
