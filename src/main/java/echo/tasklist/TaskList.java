@@ -20,7 +20,6 @@ public class TaskList {
 
     }
 
- 
     public ArrayList<Task> findTask(String task) {
         ArrayList<Task> taskFound = new ArrayList<>();
         String currentTask = "";
