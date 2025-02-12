@@ -43,7 +43,12 @@ public class Ui {
         return reader.nextLine();
     }
 
-    public String findTask (ArrayList<Task> tasklists) {
+    /**
+     * @param tasklists The task list containing the tasks
+     * @return A string displaying all the task that matches the user's input
+     */
+
+    public String findTask(ArrayList<Task> tasklists) {
         if (tasklists.isEmpty()) {
             return "No Task found!";
         }
@@ -64,7 +69,7 @@ public class Ui {
      */
     public String deleteFromList(int index, TaskList taskList) {
         String startSentence = "Gotcha! The following has been deleted!";
-        assert index > -1: "The index given should not be negative";
+        assert index > -1 : "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
     }
 
@@ -101,7 +106,7 @@ public class Ui {
      */
     public String unmark(int index, TaskList taskList) {
         String startSentence = "OK, I've marked this task as not done yet:";
-        assert index > -1: "The index given should not be negative";
+        assert index > -1 : "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
     }
 
@@ -113,7 +118,7 @@ public class Ui {
      */
     public String mark(int index, TaskList taskList) {
         String startSentence = "Nice! Marked!";
-        assert index > -1: "The index given should not be negative";
+        assert index > -1 : "The index given should not be negative";
         return startSentence + "\n" + taskList.getElementString(index);
     }
 

@@ -1,6 +1,5 @@
 package echo.tasks;
 
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an event task with a start and end time.

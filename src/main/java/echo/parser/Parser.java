@@ -150,9 +150,13 @@ public class Parser {
                 taskList.addTask(new Event(description, from, to));
                 taskList.setDateTime(taskList.getTotalTask() - 1, to);
             }
+            default -> {
+
+            }
             }
             storage.saveData("append");
             return ui.addToList(taskList);
+
 
         }
     }

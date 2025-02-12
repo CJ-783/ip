@@ -26,6 +26,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Echo.jpg"));
 
+    /**
+     * Intialises the main window with a welcome message and the necessary properties
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -46,10 +49,9 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
-
     @FXML
     private void welcomeMessgae() {
-        String welcomeMsg =  "Welcome to Echo!" + "\n" + "What can I do for you?";
+        String welcomeMsg = "Welcome to Echo!" + "\n" + "What can I do for you?";
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(welcomeMsg, dukeImage));
     }
 }
