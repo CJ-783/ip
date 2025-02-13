@@ -20,6 +20,10 @@ public class TaskList {
 
     }
 
+    /**
+     * @param task The task the user keyed in
+     * @return The task that is found
+     */
     public ArrayList<Task> findTask(String task) {
         ArrayList<Task> taskFound = new ArrayList<>();
         String currentTask = "";
@@ -47,7 +51,7 @@ public class TaskList {
      * @param dateLine  The deadline date/time to be set.
      */
     public void setDateTime(int index, String dateLine) {
-        assert index > -1: "The index given should not be negative";
+        assert index > -1 : "The index given should not be negative";
         storeTask.get(index).setDeadlineDateTime(dateLine);
     }
 
