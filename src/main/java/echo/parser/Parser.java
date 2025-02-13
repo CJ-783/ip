@@ -2,6 +2,8 @@ package echo.parser;
 
 import java.util.ArrayList;
 
+import echo.Echo;
+import echo.exceptions.EchoDuplicateTask;
 import echo.exceptions.EchoIncorrectOption;
 import echo.storage.Storage;
 import echo.tasklist.TaskList;
@@ -110,6 +112,9 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException err) {
             ui.errorMessage("Do remember to add the description");
             return "Do remember to add the description!";
+        } catch (EchoDuplicateTask err) {
+            ui.errorMessage("Duplicate!!");
+            return "This is a duplicate!!!";
         }
 
     }
@@ -119,7 +124,7 @@ public class Parser {
      *
      * @param userInput The index of the task in the task list.
      */
-    private String updateList(String userInput) {
+    private String updateList(String userInput) throws EchoDuplicateTask {
         String option = userInput.split(" ")[0];
 
         if (option.equals("delete")) {
@@ -134,13 +139,17 @@ public class Parser {
 
             switch (option) {
             case "todo" -> {
+                try {
+                    checkDuplicate(new Todo(userInput));
+                } catch (Exception e) {
+                    throw new EchoDuplicateTask();
+                }
                 taskList.addTask(new Todo(userInput));
 
             }
             case "deadline" -> {
                 String to = userInput.split("/by ")[1].trim();
                 taskList.addTask(new Deadline(description, to));
-                //taskList.setDateTime(taskList.getTotalTask() - 1, to);
 
             }
             case "event" -> {
@@ -158,6 +167,14 @@ public class Parser {
             return ui.addToList(taskList);
 
 
+        }
+    }
+
+    public void checkDuplicate(Task task) throws EchoDuplicateTask {
+        for (int i = 0; i < taskList.getTotalTask(); i++) {
+            if (task.getDescription().equals(taskList.getDescription(i))) {
+                throw new EchoDuplicateTask();
+            }
         }
     }
 

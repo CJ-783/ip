@@ -9,7 +9,7 @@ public class EchoIncorrectOption extends Exception {
      * Constructs a new EchoIncorrectOption exception.
      */
     public EchoIncorrectOption() {
-
+        super("Incorrect option");
     }
 
     /**
@@ -17,7 +17,5 @@ public class EchoIncorrectOption extends Exception {
      *
      * @param msg The message.
      */
-    public EchoIncorrectOption(String msg) {
-        super(msg);
-    }
+
 }
