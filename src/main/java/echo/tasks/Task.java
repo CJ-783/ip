@@ -39,16 +39,16 @@ public class Task {
         for (int i = 0; i < formatDateString.size(); i++) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateString.get(i));
+                System.out.println(formatDateString.get(i));
                 this.deadlineDateTime = LocalDateTime.parse(date, formatter);
                 break;
             } catch (DateTimeParseException e) {
+                System.out.println("ERROR with date time parse");
                 continue;
             }
+
         }
     }
-
-
-
     /**
      * Retrieves the deadline date/time of the task.
      *

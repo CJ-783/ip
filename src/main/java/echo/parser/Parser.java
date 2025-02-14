@@ -141,7 +141,7 @@ public class Parser {
             case "todo" -> {
                 try {
                     checkDuplicate(new Todo(userInput));
-                } catch (Exception e) {
+                } catch (EchoDuplicateTask e) {
                     throw new EchoDuplicateTask();
                 }
                 taskList.addTask(new Todo(userInput));
@@ -149,6 +149,11 @@ public class Parser {
             }
             case "deadline" -> {
                 String to = userInput.split("/by ")[1].trim();
+                try {
+                    checkDuplicate(new Deadline(description, to));
+                } catch (EchoDuplicateTask e) {
+                    throw new EchoDuplicateTask();
+                }
                 taskList.addTask(new Deadline(description, to));
 
             }
@@ -156,6 +161,11 @@ public class Parser {
                 String from = userInput.split("/from")[1];
                 from = from.split("/to")[0].trim();
                 String to = userInput.split("/to ")[1].trim();
+                try {
+                    checkDuplicate(new Event(description, from, to));
+                } catch (EchoDuplicateTask e) {
+                    throw new EchoDuplicateTask();
+                }
                 taskList.addTask(new Event(description, from, to));
                 taskList.setDateTime(taskList.getTotalTask() - 1, to);
             }
