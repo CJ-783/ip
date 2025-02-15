@@ -129,6 +129,9 @@ public class Parser {
 
         if (option.equals("delete")) {
             int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+            if (index > taskList.getTotalTask() - 1) {
+                return "The task list doesn't exist!";
+            }
             String returnString= ui.deleteFromList(index, taskList);
             taskList.removeTask(index);
             storage.saveData("replace");
