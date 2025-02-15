@@ -1,10 +1,13 @@
 package echo.tasks;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
+
+import echo.exceptions.DateFormatError;
 
 /**
  * Represents a generic task with a description, completion status, and optional deadline.
@@ -30,25 +33,40 @@ public class Task {
      *
      * @param date The string representing the deadline in various formats.
      */
-    public void setDeadlineDateTime(String date) {
-        List<String> formatDateString = Arrays.asList("MMM d yyyy HHmm",
-                "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
-                "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
-                "yyyy/M/d", "d/M/yyyy", "yyyy/M/d HHmm", "d/M/yyyy HHmm");
+//    public void setDeadlineDateTime(String date) {
 
-        for (int i = 0; i < formatDateString.size(); i++) {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateString.get(i));
-                System.out.println(formatDateString.get(i));
-                this.deadlineDateTime = LocalDateTime.parse(date, formatter);
-                break;
-            } catch (DateTimeParseException e) {
-                System.out.println("ERROR with date time parse");
-                continue;
-            }
+//        List<String> formatDateString = Arrays.asList("MMM d yyyy HHmm",
+//                "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
+//                "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
+//                "yyyy/M/d", "d/M/yyyy", "yyyy/M/d HHmm", "d/M/yyyy HHmm");
+//
+//        for (int i = 0; i < formatDateString.size(); i++) {
+//            try {
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateString.get(i));
+//
+//                this.deadlineDateTime = LocalDateTime.parse(date, formatter);
+//                break;
+//            } catch (DateTimeParseException e) {
+//                System.out.println("ERROR with date time parse");
+//                continue;
+//            }
+//
+//        }
+//    }
 
+    public void setDeadlineDateTime(String date) throws DateFormatError {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+            this.deadlineDateTime = dateTime;
+        } catch (DateTimeParseException err) {
+            throw new DateFormatError();
         }
+
     }
+
+
     /**
      * Retrieves the deadline date/time of the task.
      *

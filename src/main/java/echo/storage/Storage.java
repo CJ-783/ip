@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import echo.exceptions.DateFormatError;
 import echo.tasklist.TaskList;
 import echo.tasks.Deadline;
 import echo.tasks.Event;
@@ -55,7 +56,11 @@ public class Storage {
 
                 } else if (type.equals("D")) {
                     to = taskArray[3].trim();
-                    taskList.addTask(new Deadline(description, to));
+                    try {
+                        taskList.addTask(new Deadline(description, to));
+                    } catch (DateFormatError err) {
+
+                    }
 
                 } else if (type.equals("E")) {
                     String duration = taskArray[3].trim();

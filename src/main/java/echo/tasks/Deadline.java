@@ -2,6 +2,8 @@ package echo.tasks;
 
 import java.time.format.DateTimeFormatter;
 
+import echo.exceptions.DateFormatError;
+
 /**
  * Represents a task with a deadline.
  */
@@ -16,11 +18,14 @@ public class Deadline extends Task {
      * @param by          The deadline of the task in string format.
      */
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by)  throws DateFormatError{
         super(description);
-        super.setDeadlineDateTime(by);
-        System.out.println(super.getDeadlineDateTime());
-        this.by = by;
+        try {
+            super.setDeadlineDateTime(by);
+        } catch (DateFormatError err) {
+            throw new DateFormatError();
+        }
+        this.by =  super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
 //        System.out.println(super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")));
 //        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
