@@ -104,6 +104,7 @@ public class Parser {
 
         try {
             validOption(option);
+
             return updateList(userInput);
 
         } catch (EchoIncorrectOption err) {
@@ -116,7 +117,6 @@ public class Parser {
             ui.errorMessage("Duplicate!!");
             return "This is a duplicate!!!";
         }
-
     }
 
     /**
@@ -129,9 +129,11 @@ public class Parser {
 
         if (option.equals("delete")) {
             int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+            String returnString= ui.deleteFromList(index, taskList);
             taskList.removeTask(index);
             storage.saveData("replace");
-            return ui.deleteFromList(index, taskList);
+
+            return returnString;
 
         } else {
             userInput = userInput.split(" ", 2)[1].trim();

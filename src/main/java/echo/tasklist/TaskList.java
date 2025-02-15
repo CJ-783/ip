@@ -115,7 +115,9 @@ public class TaskList {
      * @param index The index of the task from the task list to be returned.
      */
     public String getElementString(int index) {
-        return storeTask.get(index).toString();
+        String elementString = storeTask.get(index).toString();
+
+        return elementString;
     }
 
 
