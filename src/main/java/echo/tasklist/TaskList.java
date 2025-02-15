@@ -2,6 +2,7 @@ package echo.tasklist;
 
 import java.util.ArrayList;
 
+import echo.exceptions.EchoDuplicateTask;
 import echo.tasks.Task;
 
 /**
@@ -36,6 +37,10 @@ public class TaskList {
         return taskFound;
     }
 
+    public String getDescription(int i) {
+        return storeTask.get(i).getDescription();
+    }
+
     /**
      * Retrieves the total number of task
      * @return  Returns the total number of task in integer
@@ -64,6 +69,8 @@ public class TaskList {
         storeTask.add(task);
         totalTask++;
     }
+
+
 
     /**
      * Removes a task from the task list by its index.
@@ -108,7 +115,9 @@ public class TaskList {
      * @param index The index of the task from the task list to be returned.
      */
     public String getElementString(int index) {
-        return storeTask.get(index).toString();
+        String elementString = storeTask.get(index).toString();
+
+        return elementString;
     }
 
 

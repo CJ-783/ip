@@ -68,8 +68,10 @@ public class Ui {
      * @param taskList
      */
     public String deleteFromList(int index, TaskList taskList) {
+
         String startSentence = "Gotcha! The following has been deleted!";
         assert index > -1 : "The index given should not be negative";
+
         return startSentence + "\n" + taskList.getElementString(index);
     }
 

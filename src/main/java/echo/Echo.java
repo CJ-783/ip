@@ -46,7 +46,8 @@ public class Echo {
      *
      */
     public String getResponse(String userInput) {
-        return parser.getOption(userInput);
+        String returnValue = parser.getOption(userInput);
+        return returnValue;
     }
     public void run() {
 
