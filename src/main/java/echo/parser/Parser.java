@@ -3,6 +3,7 @@ package echo.parser;
 import java.util.ArrayList;
 
 import echo.Echo;
+import echo.exceptions.DateFormatError;
 import echo.exceptions.EchoDuplicateTask;
 import echo.exceptions.EchoIncorrectOption;
 import echo.storage.Storage;
@@ -116,6 +117,9 @@ public class Parser {
         } catch (EchoDuplicateTask err) {
             ui.errorMessage("Duplicate!!");
             return "This is a duplicate!!!";
+        } catch (DateFormatError err) {
+            ui.errorMessage("Please enter the correct date format (dd/MM/yyyy HHmm)!!");
+            return "Please enter the correct date format (dd/MM/yyyy HHmm)!!";
         }
     }
 
@@ -124,7 +128,7 @@ public class Parser {
      *
      * @param userInput The index of the task in the task list.
      */
-    private String updateList(String userInput) throws EchoDuplicateTask {
+    private String updateList(String userInput) throws EchoDuplicateTask, DateFormatError {
         String option = userInput.split(" ")[0];
 
         if (option.equals("delete")) {
@@ -155,11 +159,15 @@ public class Parser {
             case "deadline" -> {
                 String to = userInput.split("/by ")[1].trim();
                 try {
-                    checkDuplicate(new Deadline(description, to));
+                    Deadline newDateline = new Deadline(description, to);
+                    checkDuplicate(newDateline);
+                    taskList.addTask(newDateline);
                 } catch (EchoDuplicateTask e) {
                     throw new EchoDuplicateTask();
+                } catch (DateFormatError err) {
+                    throw new DateFormatError();
                 }
-                taskList.addTask(new Deadline(description, to));
+
 
             }
             case "event" -> {
@@ -172,7 +180,7 @@ public class Parser {
                     throw new EchoDuplicateTask();
                 }
                 taskList.addTask(new Event(description, from, to));
-                taskList.setDateTime(taskList.getTotalTask() - 1, to);
+//                taskList.setDateTime(taskList.getTotalTask() - 1, to);
             }
             default -> {
 
