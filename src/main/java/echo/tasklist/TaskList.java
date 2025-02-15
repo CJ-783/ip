@@ -2,6 +2,7 @@ package echo.tasklist;
 
 import java.util.ArrayList;
 
+import echo.exceptions.DateFormatError;
 import echo.exceptions.EchoDuplicateTask;
 import echo.tasks.Task;
 
@@ -57,7 +58,11 @@ public class TaskList {
      */
     public void setDateTime(int index, String dateLine) {
         assert index > -1 : "The index given should not be negative";
-        storeTask.get(index).setDeadlineDateTime(dateLine);
+        try {
+            storeTask.get(index).setDeadlineDateTime(dateLine);
+        } catch (DateFormatError err) {
+
+        }
     }
 
     /**

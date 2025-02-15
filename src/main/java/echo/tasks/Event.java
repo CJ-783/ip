@@ -19,7 +19,7 @@ public class Event extends Task {
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;
-        super.setDeadlineDateTime(to);
+//        super.setDeadlineDateTime(to);
         this.by = to;
     }
 
