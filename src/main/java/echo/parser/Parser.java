@@ -42,25 +42,28 @@ public class Parser {
      * @return An integer for the Echo class to determine if the user has chosen to exit the program
      */
     public String getOption(String userInput) {
-        String userOption = userInput.split(" ")[0].trim().toLowerCase();
+        String[] commandParts = userInput.split(" ");
+        String userCommand = commandParts[0].trim().toLowerCase();
 
-        if (userOption.equals("bye")) {
+        switch (userCommand) {
+        case "bye":
             return "See you next time!";
-
-        } else if (userOption.equals("list")) {
+        case "list":
             return ui.printList(taskList);
-        } else if (userOption.equals("unmark")) {
+        case "unmark":
             return unMark(userInput);
-        } else if (userOption.equals("mark")) {
+        case "mark":
             return mark(userInput);
-        } else if (userOption.equals("find")) {
-            String userDesc = userInput.split(" ")[1].trim().toLowerCase();
+        case "find":
+            String userDesc = commandParts[1].trim().toLowerCase();
             return findTask(userDesc);
-        } else {
+        default:
             return addRemoveList(userInput);
         }
-
     }
+
+
+
 
 
     private String findTask(String userDesc) {
