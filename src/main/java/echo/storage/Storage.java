@@ -35,47 +35,65 @@ public class Storage {
     /**
      * This method retrieves the task list from the file.
      */
+
     public void loadData() {
-        String[] taskArray;
-        String type;
-        String description;
-        String from;
-        String to;
-        String isDone;
         try {
             Scanner s = new Scanner(filePath);
             while (s.hasNext()) {
-                taskArray = s.nextLine().split("\\|");
-
-                type = taskArray[0].replaceAll("\\s", "");
-                isDone = taskArray[1].replaceAll("\\s", "");
-                description = taskArray[2].trim();
-
-                if (type.equals("T")) {
-                    taskList.addTask(new Todo(description));
-
-                } else if (type.equals("D")) {
-                    to = taskArray[3].trim();
-                    try {
-                        taskList.addTask(new Deadline(description, to));
-                    } catch (DateFormatError err) {
-
-                    }
-
-                } else if (type.equals("E")) {
-                    String duration = taskArray[3].trim();
-                    from = duration.split("-")[0].trim();
-                    to = duration.split("-")[1].trim();
-                    taskList.addTask(new Event(description, from, to));
-                }
-
-                if (isDone.equals("1")) {
-                    taskList.setMark(taskList.getTotalTask() - 1);
-                }
-
+                processTask(s.nextLine());
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException err) {
             setUpFile();
+        }
+    }
+
+    private void processTask(String task) {
+        String[] taskArray = task.split("\\|");
+        String type = taskArray[0].replaceAll("\\s", "");
+        boolean isDone = taskArray[1].replaceAll("\\s", "").equals("1");
+        String description = taskArray[2].trim();
+
+        switch (type) {
+        case "T":
+            addTodoTask(description, isDone);
+            break;
+        case "D":
+            addDeadlineTask(taskArray, description, isDone );
+            break;
+        case "E":
+            addEventTask(taskArray, description, isDone);
+            break;
+        default:
+
+        }
+    }
+
+    private void addTodoTask(String description, boolean isDone) {
+        taskList.addTask(new Todo(description));
+        markTask(isDone);
+    }
+
+    private void addDeadlineTask(String[] taskArray, String description, boolean isDone) {
+        String dueDate = taskArray[3].trim();
+        try {
+            taskList.addTask(new Deadline(description, dueDate));
+            markTask(isDone);
+        } catch (DateFormatError err) {
+            System.out.println("Invalid date format for dateline: " + dueDate);
+        }
+    }
+
+    private void addEventTask(String[] taskArray, String description, boolean isDone) {
+        String duration = taskArray[3].trim();
+        String fromDate = duration.split("-")[0].trim();
+        String dueDate = duration.split("-")[1].trim();
+        taskList.addTask(new Event(description, fromDate, dueDate));
+        markTask(isDone);
+    }
+
+    private void markTask(boolean isDone) {
+        if (isDone) {
+            taskList.setMark(taskList.getTotalTask() - 1);
         }
     }
 
