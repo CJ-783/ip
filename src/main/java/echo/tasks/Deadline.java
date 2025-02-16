@@ -26,8 +26,6 @@ public class Deadline extends Task {
             throw new DateFormatError();
         }
         this.by =  super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
-//        System.out.println(super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")));
-//        this.by = super.getDeadlineDateTime().format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
 
     /**

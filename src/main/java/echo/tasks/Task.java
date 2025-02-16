@@ -33,26 +33,7 @@ public class Task {
      *
      * @param date The string representing the deadline in various formats.
      */
-//    public void setDeadlineDateTime(String date) {
 
-//        List<String> formatDateString = Arrays.asList("MMM d yyyy HHmm",
-//                "yyyy/M/dd", "dd/M/yyyy", "yyyy/M/dd HHmm", "dd/M/yyyy HHmm",
-//                "yyyy-M-dd", "dd-M-yyyy", "yyyy-M-dd HHmm", "dd-M-yyyy HHmm",
-//                "yyyy/M/d", "d/M/yyyy", "yyyy/M/d HHmm", "d/M/yyyy HHmm");
-//
-//        for (int i = 0; i < formatDateString.size(); i++) {
-//            try {
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatDateString.get(i));
-//
-//                this.deadlineDateTime = LocalDateTime.parse(date, formatter);
-//                break;
-//            } catch (DateTimeParseException e) {
-//                System.out.println("ERROR with date time parse");
-//                continue;
-//            }
-//
-//        }
-//    }
 
     public void setDeadlineDateTime(String date) throws DateFormatError {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
