@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
 import echo.exceptions.DateFormatError;
@@ -76,10 +82,17 @@ public class Storage {
     private void addDeadlineTask(String[] taskArray, String description, boolean isDone) {
         String dueDate = taskArray[3].trim();
         try {
-            taskList.addTask(new Deadline(description, dueDate));
+            DateFormat originalFormat = new SimpleDateFormat("MMM d yyyy HHmm");
+            Date date = originalFormat.parse(dueDate);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
+            String formattedDueDate = dateFormat.format(date);
+
+            taskList.addTask(new Deadline(description, formattedDueDate));
             markTask(isDone);
         } catch (DateFormatError err) {
             System.out.println("Invalid date format for dateline: " + dueDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 
