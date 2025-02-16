@@ -62,10 +62,6 @@ public class Parser {
         }
     }
 
-
-
-
-
     private String findTask(String userDesc) {
         ArrayList<Task> tasksFound = this.taskList.findTask(userDesc);
         return ui.findTask(tasksFound);
@@ -108,7 +104,6 @@ public class Parser {
 
         try {
             validOption(option);
-
             return updateList(userInput);
 
         } catch (EchoIncorrectOption err) {
@@ -126,75 +121,85 @@ public class Parser {
         }
     }
 
+    private String handleDelete(String[] commandParts) {
+        int index = Integer.parseInt(commandParts[1]) - 1;
+        if (index > taskList.getTotalTask() - 1) {
+            return "The task list doesn't exist!";
+        }
+        String returnString = ui.deleteFromList(index, taskList);
+        taskList.removeTask(index);
+        storage.saveData("replace");
+
+        return returnString;
+    }
+
+
     /**
      * This method is to update the task list (i.e. delete/add).
      *
      * @param userInput The index of the task in the task list.
      */
     private String updateList(String userInput) throws EchoDuplicateTask, DateFormatError {
-        String option = userInput.split(" ")[0];
+        String[] commandParts = userInput.trim().split(" ", 2);
+        String option = commandParts[0];
 
         if (option.equals("delete")) {
-            int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
-            if (index > taskList.getTotalTask() - 1) {
-                return "The task list doesn't exist!";
-            }
-            String returnString= ui.deleteFromList(index, taskList);
-            taskList.removeTask(index);
-            storage.saveData("replace");
-
-            return returnString;
-
+            return handleDelete(commandParts);
         } else {
-            userInput = userInput.split(" ", 2)[1].trim();
-            String description = userInput.split("/")[0].trim();
-
-            switch (option) {
-            case "todo" -> {
-                try {
-                    checkDuplicate(new Todo(userInput));
-                } catch (EchoDuplicateTask e) {
-                    throw new EchoDuplicateTask();
-                }
-                taskList.addTask(new Todo(userInput));
-
-            }
-            case "deadline" -> {
-                String to = userInput.split("/by ")[1].trim();
-                try {
-                    Deadline newDateline = new Deadline(description, to);
-                    checkDuplicate(newDateline);
-                    taskList.addTask(newDateline);
-                } catch (EchoDuplicateTask e) {
-                    throw new EchoDuplicateTask();
-                } catch (DateFormatError err) {
-                    throw new DateFormatError();
-                }
-
-
-            }
-            case "event" -> {
-                String from = userInput.split("/from")[1];
-                from = from.split("/to")[0].trim();
-                String to = userInput.split("/to ")[1].trim();
-                try {
-                    checkDuplicate(new Event(description, from, to));
-                } catch (EchoDuplicateTask e) {
-                    throw new EchoDuplicateTask();
-                }
-                taskList.addTask(new Event(description, from, to));
-//                taskList.setDateTime(taskList.getTotalTask() - 1, to);
-            }
-            default -> {
-
-            }
-            }
-            storage.saveData("append");
-            return ui.addToList(taskList);
-
-
+            return handleAdd(option, commandParts[1]);
         }
+
     }
+
+    private String handleAdd(String option, String details) throws EchoDuplicateTask, DateFormatError {
+
+        String description = details.split("/")[0].trim();
+
+        switch (option) {
+        case "todo": {
+            try {
+                checkDuplicate(new Todo(description));
+            } catch (EchoDuplicateTask e) {
+                throw new EchoDuplicateTask();
+            }
+            taskList.addTask(new Todo(description));
+            break;
+        }
+
+        case "deadline": {
+            String deadlineDate = details.split("/by ")[1].trim();
+            try {
+                Deadline newDateline = new Deadline(description, deadlineDate);
+                checkDuplicate(newDateline);
+                taskList.addTask(newDateline);
+            } catch (EchoDuplicateTask e) {
+                throw new EchoDuplicateTask();
+            } catch (DateFormatError err) {
+                throw new DateFormatError();
+            }
+            break;
+        }
+
+        case "event": {
+            String fromDate = details.split("/from")[1];
+            fromDate = fromDate.split("/to")[0].trim();
+            String deadlineDate = details.split("/to ")[1].trim();
+            try {
+                checkDuplicate(new Event(description, fromDate, deadlineDate));
+            } catch (EchoDuplicateTask e) {
+                throw new EchoDuplicateTask();
+            }
+            taskList.addTask(new Event(description, fromDate, deadlineDate));
+            break;
+        }
+        default:
+            return "Error: unknown command";
+        }
+        storage.saveData("append");
+        return ui.addToList(taskList);
+    }
+
+
 
     public void checkDuplicate(Task task) throws EchoDuplicateTask {
         for (int i = 0; i < taskList.getTotalTask(); i++) {
