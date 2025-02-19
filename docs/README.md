@@ -7,13 +7,13 @@ Echo is a desktop app for managing your tasks. You will be able to add tasks (to
 
 ## Features
 
-- Todo [https://cj-783.github.io/ip/](#adding-todo)
-- Deadline [https://cj-783.github.io/ip/](#adding-deadlines)
-- Events [https://cj-783.github.io/ip/](#adding-events)
-- Find task [https://cj-783.github.io/ip/](#searching-or-task)
-- Mark task [https://cj-783.github.io/ip/](#marking-task)
-- Unmark task  [https://cj-783.github.io/ip/](#unmarking-task)
-- Prevent duplicate [https://cj-783.github.io/ip/](#preventing-duplicates)
+- [Todo] (https://cj-783.github.io/ip/#adding-todo)
+- [Deadline] (https://cj-783.github.io/ip/#adding-deadlines)
+- [Events] (https://cj-783.github.io/ip/#adding-events)
+- [Find task] (https://cj-783.github.io/ip/#searching-or-task)
+- [Mark task] (https://cj-783.github.io/ip/#marking-task)
+- [Unmark task ] (https://cj-783.github.io/ip/#unmarking-task)
+- [Prevent duplicate] (https://cj-783.github.io/ip/#preventing-duplicates)
 
 ### Adding Todo 
 To add a todo task, use the following command  
