@@ -7,13 +7,13 @@ Echo is a desktop app for managing your tasks. You will be able to add tasks (to
 
 ## Features
 
-- [Todo] (#adding-todo)
-- [Deadline] (#adding-deadlines)
-- [Events] (#adding-events)
-- [Find task] (#searching-or-task)
-- [Mark task] (#marking-task)
-- [Unmark task ] (#unmarking-task)
-- [Prevent duplicate] (#preventing-duplicates)
+- [Todo](#adding-todo)
+- [Deadline](#adding-deadlines)
+- [Events](#adding-events)
+- [Find task](#searching-or-task)
+- [Mark task](#marking-task)
+- [Unmark task ](#unmarking-task)
+- [Prevent duplicate](#preventing-duplicates)
 
 ### Adding Todo 
 To add a todo task, use the following command  
