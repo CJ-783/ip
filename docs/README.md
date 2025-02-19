@@ -118,6 +118,7 @@ Suppose your task list contains the following
 
 If the following command is submitted  
 `todo Finish CS2103`  
+
 The system will detect that a task with the same description exist and will return the following output  
 `This is a duplicate!!!`
 
