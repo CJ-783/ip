@@ -2,9 +2,12 @@
 
 ![Echo screenshot](Ui.png)
 
-Welcome to Echo – Your Personal Task Manager! ^_^
+Welcome to Echo – Your Personal Task Manager! ^_^  
+Echo is a desktop app for managing your tasks. You will be able to add tasks (todo, deadline, event) as you need.
 
 ## Features
+
+- Todo [https://cj-783.github.io/ip/](#adding-todo)
 
 ### Adding Todo 
 To add a todo task, use the following command  
