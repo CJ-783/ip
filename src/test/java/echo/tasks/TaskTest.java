@@ -25,7 +25,7 @@ public class TaskTest {
 
     @Test
     public void testDateTimeDeadline2() {
-        String expectedAnswer = "Dec 28 2025";
+        String expectedAnswer = "Dec 28 2025 1500";
         try {
             Deadline d = new Deadline("Weekly meeting", "28/12/2025 1500");
             String dayOfWeek = d.getDeadline();
