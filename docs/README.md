@@ -113,12 +113,12 @@ OK, I've marked this task as not done yet.
 When adding a new task, the system will check if a task with the same description exists in the task list. If it exists, it will notify you with a duplicate message.
 
 ### Example 
-Suppose your task list contains the following
+Suppose your task list contains the following  
 `[D][] Finish CS2103 work (by: Feb 19 2025 1800)`
 
-If the following command is submitted
+If the following command is submitted  
 `todo Finish CS2103`  
-The system will detect that a task with the same description exist and will return the following output
+The system will detect that a task with the same description exist and will return the following output  
 `This is a duplicate!!!`
 
 
