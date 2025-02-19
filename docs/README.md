@@ -1,30 +1,37 @@
-# Duke User Guide
-
-// Update the title above to match the actual product name
+# Echo User Guide
 
 // Product screenshot goes here
 
-// Product intro goes here
+Welcome to Echo – Your Personal Task Manager ^_^
+
+# Features
+
+## Adding Todo 
 
 ## Adding deadlines
 
-// Describe the action and its outcome.
+To add a deadline, use the following command
+`deadline <description> /by <DD/MM/YYYY HHMM>`
 
-// Give examples of usage
+Example: 
+`deadline Finish CS2103 work /by 19/02/2025 1800`
+This will add a deadline task with the description "Finish CS2103 work", due on 19 February 2025 at 1800
 
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
-
+Expected output:
 ```
-expected output
+Gotcha! I've added this task:
+[D][] Finish CS2103 work (by: Feb 19 2025 1800)
+Now you have 1 tasks in the list.
 ```
 
-## Feature ABC
+## Adding events
 
-// Feature details
+## Searching or Task
 
+## Listing down tasks
 
-## Feature XYZ
+## Marking Task
 
-// Feature details
+## Unmarking task
+
+## Managing duplicates

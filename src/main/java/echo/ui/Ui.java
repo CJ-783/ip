@@ -83,8 +83,12 @@ public class Ui {
      */
     public String addToList(TaskList taskList) {
         String startSentence = "Gotcha! I've added this task:";
+        String newlyAddedTask =  taskList.getElementString(taskList.getTotalTask() - 1);
+        String totalTask =  String.valueOf(taskList.getTotalTask());
+        String notifyTotalTask = "Now you have " + totalTask + " tasks in the list.";
 
-        return startSentence + "\n" + taskList.getElementString(taskList.getTotalTask() - 1);
+
+        return startSentence + "\n" + newlyAddedTask + "\n" + notifyTotalTask;
     }
 
     /**
