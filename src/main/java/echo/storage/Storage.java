@@ -39,9 +39,8 @@ public class Storage {
     }
 
     /**
-     * This method retrieves the task list from the file.
+     * This method retrieves the task list from the file and load into the program task list.
      */
-
     public void loadData() {
         try {
             Scanner s = new Scanner(filePath);
@@ -53,6 +52,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Process a task string and adds to the task list
+     *
+     * @param task the string containing the task
+     */
     private void processTask(String task) {
         String[] taskArray = task.split("\\|");
         String type = taskArray[0].replaceAll("\\s", "");
@@ -74,6 +78,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds a "to-do" task to the task list and marks as completed if it's completed.
+     *
+     * @param description the description of the to-do task
+     * @param isDone a boolean flag checking whether the to-do task list is marked as complete
+     */
     private void addTodoTask(String description, boolean isDone) {
         taskList.addTask(new Todo(description));
         markTask(isDone);
@@ -96,6 +106,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds an "event" task to the task list and marks as completed if it's completed
+     *
+     * @param taskArray the array containing all the tasks
+     * @param description the description of the event task
+     * @param isDone a boolean flag indicating whether the event task is marked as completed
+     */
     private void addEventTask(String[] taskArray, String description, boolean isDone) {
         String duration = taskArray[3].trim();
         String fromDate = duration.split("-")[0].trim();
@@ -104,12 +121,20 @@ public class Storage {
         markTask(isDone);
     }
 
+    /**
+     * Marks a task as completed if it is done
+     *
+     * @param isDone is a boolean flag checking whether the task is completed
+     */
     private void markTask(boolean isDone) {
         if (isDone) {
             taskList.setMark(taskList.getTotalTask() - 1);
         }
     }
 
+    /**
+     * Sets up the file for storing task data by creating a new file if it does not exist.
+     */
     private void setUpFile() {
         System.out.println("Creating Echo.txt file...");
         File echoFile = new File("Data/Echo.txt");

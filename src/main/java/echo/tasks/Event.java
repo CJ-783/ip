@@ -19,7 +19,6 @@ public class Event extends Task {
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;
-//        super.setDeadlineDateTime(to);
         this.by = to;
     }
 
@@ -48,8 +47,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-
-
         return "[E]" + "[" + this.getStatusIcon() + "] " + this.getDescription() + " (from: " + this.from + " to: "
                 + this.by + ")";
     }

@@ -1,9 +1,5 @@
 package echo;
 
-//import java.io.File;
-
-//for file management
-
 import echo.parser.Parser;
 import echo.storage.Storage;
 import echo.tasklist.TaskList;
@@ -43,15 +39,12 @@ public class Echo {
 
     /**
      * The entrypoint for running the program.
-     *
      */
     public String getResponse(String userInput) {
         String returnValue = parser.getOption(userInput);
         return returnValue;
     }
     public void run() {
-
-
     }
 
 

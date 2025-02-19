@@ -10,14 +10,12 @@ import echo.exceptions.DateFormatError;
 public class Deadline extends Task {
 
     protected String by;
-
     /**
      * Constructs a Deadline task with a description and a deadline.
      *
      * @param description The task description.
      * @param by          The deadline of the task in string format.
      */
-
     public Deadline(String description, String by)  throws DateFormatError{
         super(description);
         try {

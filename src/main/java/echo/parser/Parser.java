@@ -36,10 +36,10 @@ public class Parser {
 
 
     /**
-     * This method determines the option that the user has chosen.
+     * Determines the action based on the user input command.
      *
      * @param userInput The user input.
-     * @return An integer for the Echo class to determine if the user has chosen to exit the program
+     * @return a response message indicating the result of the command execution
      */
     public String getOption(String userInput) {
         String[] commandParts = userInput.split(" ");
@@ -62,6 +62,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Searches for tasks in the task list that match the given description.
+     *
+     * @param userDesc the description to search for in the task list.
+     * @return a formatted string containing the matching tasks if found, or a message indicating that it doesn't exist
+     */
     private String findTask(String userDesc) {
         ArrayList<Task> tasksFound = this.taskList.findTask(userDesc);
         return ui.findTask(tasksFound);
@@ -71,6 +77,7 @@ public class Parser {
      * This method is responsible for un-marking the user task on the task list
      *
      * @param userInput The index of the task in the task list to un-mark.
+     * @return a message confirming that the task has been unmarked
      */
     private String unMark(String userInput) {
         String index = userInput.split(" ")[1];
@@ -84,6 +91,7 @@ public class Parser {
      * This method is responsible for marking the user task on the task list
      *
      * @param userInput The index of the task in the task list to mark.
+     * @return a message confirming that the task has been marked
      */
     private String mark(String userInput) {
         String index = userInput.split(" ")[1];
@@ -97,7 +105,7 @@ public class Parser {
      * This method is used to determine if the user entered an incorrect input.
      *
      * @param userInput The index of the task in the task list to add or remove.
-     * @return An integer based on whether the user entered an incorrect input.
+     * @return a message confirming the operation, or an error message if the command is incorrect.
      */
     private String addRemoveList(String userInput) {
         String option = userInput.split(" ")[0];
@@ -137,7 +145,12 @@ public class Parser {
     /**
      * This method is to update the task list (i.e. delete/add).
      *
-     * @param userInput The index of the task in the task list.
+     *
+     * @param userInput the full command string entered by the user.
+     *
+     * @return a message indicating the result of the update operation.
+     * @throws EchoDuplicateTask if an attempt is made to add a duplicate task.
+     * @throws DateFormatError if the provided date format is incorrect for deadline tasks.
      */
     private String updateList(String userInput) throws EchoDuplicateTask, DateFormatError {
         String[] commandParts = userInput.trim().split(" ", 2);
@@ -148,8 +161,8 @@ public class Parser {
         } else {
             return handleAdd(option, commandParts[1]);
         }
-
     }
+
 
     private String handleAdd(String option, String details) throws EchoDuplicateTask, DateFormatError {
 
@@ -212,7 +225,7 @@ public class Parser {
     /**
      * This method decides whether the option that the user key in is valid.
      *
-     * @param userInput The user input that the user keyed in
+     * @param userInput The user option that the user keyed in
      * @throws EchoIncorrectOption Throws an incorrect option exception when the user enter an invalid option
      */
     private void validOption(String userInput) throws EchoIncorrectOption {

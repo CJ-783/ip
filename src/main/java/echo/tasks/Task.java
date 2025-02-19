@@ -33,8 +33,6 @@ public class Task {
      *
      * @param date The string representing the deadline in various formats.
      */
-
-
     public void setDeadlineDateTime(String date) throws DateFormatError {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 

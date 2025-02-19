@@ -12,10 +12,5 @@ public class EchoIncorrectOption extends Exception {
         super("Incorrect option");
     }
 
-    /**
-     * Constructs a new EchoIncorrectOption exception with a message.
-     *
-     * @param msg The message.
-     */
 
 }

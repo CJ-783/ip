@@ -19,31 +19,6 @@ public class Ui {
     }
 
     /**
-     * Displays the welcome message.
-     */
-    public void welcomeMessage() {
-        String logo = """
-                #######  #####   #     #  #######\s
-                #       #     #  #     #  #     #\s
-                #       #        #     #  #     #\s
-                #####   #        #######  #     #\s
-                #       #        #     #  #     #\s
-                #       #     #  #     #  #     #\s
-                #######  #####   #     #  #######""";
-        System.out.println("Welcome to\n" + logo + "\n" + "What can I do for you?");
-    }
-
-    /**
-     * Reads the user input.
-     *
-     * @return The user input as a String.
-     */
-    public String readCommand() {
-        Scanner reader = new Scanner(System.in);
-        return reader.nextLine();
-    }
-
-    /**
      * @param tasklists The task list containing the tasks
      * @return A string displaying all the task that matches the user's input
      */
@@ -64,8 +39,9 @@ public class Ui {
     /**
      * Display a message stating that the task the user input has been deleted
      *
-     * @param index
-     * @param taskList
+     * @param index the index to delete from the taskList
+     * @param taskList the task list containing the task
+     * @return a string message indicating that the task has been deleted, along with the task details
      */
     public String deleteFromList(int index, TaskList taskList) {
 
@@ -79,14 +55,14 @@ public class Ui {
     /**
      * Display a message indicating a task has been added to the list.
      *
-     * @param taskList The task list containing the task
+     * @param taskList the task list containing the task
+     * @return a string message confirming the task addition, including the task details and total number of task
      */
     public String addToList(TaskList taskList) {
         String startSentence = "Gotcha! I've added this task:";
         String newlyAddedTask =  taskList.getElementString(taskList.getTotalTask() - 1);
         String totalTask =  String.valueOf(taskList.getTotalTask());
         String notifyTotalTask = "Now you have " + totalTask + " tasks in the list.";
-
 
         return startSentence + "\n" + newlyAddedTask + "\n" + notifyTotalTask;
     }
@@ -95,6 +71,7 @@ public class Ui {
      * Display the task list
      *
      * @param taskList The Task list to be printed
+     * @return a message indicating the list is empty if no tasks exist, else returns the list of tasks formatted
      */
     public String printList(TaskList taskList) {
         if (Integer.valueOf(taskList.getTotalTask()).equals(0)) {
@@ -107,8 +84,9 @@ public class Ui {
     /**
      * Unmarks a task
      *
-     * @param index     The index of the task to be unmarked.
-     * @param taskList  The task list containing the tasks.
+     * @param index     The index of the task to be unmarked
+     * @param taskList  The task list containing the tasks
+     * @return a message confirming the task has been unmarked
      */
     public String unmark(int index, TaskList taskList) {
         String startSentence = "OK, I've marked this task as not done yet:";
@@ -121,6 +99,7 @@ public class Ui {
      *
      * @param index     The index of the task to be marked.
      * @param taskList  The task list containing the tasks.
+     * @return a message confirming that the task has been marked as completed
      */
     public String mark(int index, TaskList taskList) {
         String startSentence = "Nice! Marked!";

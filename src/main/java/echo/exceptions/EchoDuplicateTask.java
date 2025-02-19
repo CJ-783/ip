@@ -2,7 +2,6 @@ package echo.exceptions;
 
 public class EchoDuplicateTask extends Exception{
 
-
     public EchoDuplicateTask() {
 
     }
