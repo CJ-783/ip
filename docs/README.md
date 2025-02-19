@@ -66,7 +66,7 @@ Here are the matching tasks in your list:
 ```
 
 ## Listing down tasks
-To view all your tasks, use the following command
+To view all your tasks, use the following command  
 `list`  
 Note: This will list all your tasks in the order that you entered them
 
@@ -82,7 +82,7 @@ Here are the matching tasks in your list:
 ```
 
 ## Marking Task
-To mark a task as completed, use the following command
+To mark a task as completed, use the following command  
 `mark <task number>`  
 Note: This will mark the task based on the number shown in the task list
 
@@ -96,7 +96,7 @@ Nice! Marked!
 ```
 
 ## Unmarking task
-To unmark a task as completed, use the following command
+To unmark a task as completed, use the following command  
 `unmark <task number>`  
 Note: This will unmark the task based on the number shown in the task list
 
