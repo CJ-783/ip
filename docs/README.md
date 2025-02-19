@@ -51,7 +51,7 @@ Now you have 1 tasks in the list.
 
 ## Searching or Task
 To find a task, use the following command.  
-`find <string>`
+`find <string>`  
 Note: The output will list all tasks that match the provided string
 
 ### Example 
@@ -67,7 +67,7 @@ Here are the matching tasks in your list:
 
 ## Listing down tasks
 To view all your tasks, use the following command
-`list`
+`list`  
 Note: This will list all your tasks in the order that you entered them
 
 ### Example 
@@ -83,7 +83,7 @@ Here are the matching tasks in your list:
 
 ## Marking Task
 To mark a task as completed, use the following command
-`mark <task number>`
+`mark <task number>`  
 Note: This will mark the task based on the number shown in the task list
 
 ### Example 
@@ -97,7 +97,7 @@ Nice! Marked!
 
 ## Unmarking task
 To unmark a task as completed, use the following command
-`unmark <task number>`
+`unmark <task number>`  
 Note: This will unmark the task based on the number shown in the task list
 
 ### Example 
