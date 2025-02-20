@@ -14,7 +14,7 @@ Echo is a desktop app for managing your tasks. You will be able to add tasks (to
 - [Mark task](#marking-task)
 - [Unmark task ](#unmarking-task)
 - [Prevent duplicate](#preventing-duplicates)
-  
+-----
 ### Adding Todo 
 To add a todo task, use the following command  
 `todo <description>`  
@@ -29,6 +29,7 @@ Gotcha! I've added this task:
 [T][] Buy groceries for dinner
 Now you have 1 tasks in the list.
 ```
+-----
 ### Adding deadlines
 To add a deadline task, use the following command  
 `deadline <description> /by <DD/MM/YYYY HHMM>`  
