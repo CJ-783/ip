@@ -18,7 +18,7 @@
 
 
         <StackPane>
-            <Circle fx:id="userImage" radius="50" fill="skyblue"/>
+            <Circle fx:id="userImage" radius="40"/>
         </StackPane>
 
 
