@@ -29,8 +29,7 @@ This will add a todo task with the description "Buy groceries for dinner"
 Gotcha! I've added this task:
 [T][] Buy groceries for dinner
 Now you have 1 tasks in the list.
-```
------
+```  
 ## Adding deadlines
 To add a deadline task, use the following command  
 `deadline <description> /by <DD/MM/YYYY HHMM>`  
@@ -44,7 +43,7 @@ This will add a deadline task with the description "Finish CS2103 work", due on 
 Gotcha! I've added this task:
 [D][] Finish CS2103 work (by: Feb 19 2025 1800)
 Now you have 1 tasks in the list.
-```
+```  
 
 ## Adding events
 To add an event task, use the following command  
@@ -59,7 +58,7 @@ This will add a event task with the description "Team meeting", from Monday 2pm 
 Gotcha! I've added this task:
 [E][] Team meeting (from: Monday 2PM to: Monday 4PM)
 Now you have 1 tasks in the list.
-```
+```  
 
 ## Searching of Task
 To find a task, use the following command.  
@@ -75,7 +74,7 @@ This will find "CS2103" from your task list. If it exist in the list, it will re
 Here are the matching tasks in your list:
 [D][] Finish CS2103 work (by: Feb 19 2025 1800)
 [T][] CS2103 revision session
-```
+```  
 
 ## Listing down tasks
 To view all your tasks, use the following command  
@@ -91,7 +90,7 @@ Here are the matching tasks in your list:
 [D][] Finish CS2103 work (by: Feb 19 2025 1800)
 [T][X] CS2103 revision session
 [T][] Buy groceries for dinner
-```
+```  
 
 ## Marking Task
 To mark a task as completed, use the following command  
@@ -105,7 +104,7 @@ Note: This will mark the task based on the number shown in the task list
 ```
 Nice! Marked!
 [D][X] Finish CS2103 work (by: Feb 19 2025 1800)
-```
+```  
 
 ## Unmarking task
 To unmark a task as completed, use the following command  
@@ -119,7 +118,7 @@ Note: This will unmark the task based on the number shown in the task list
 ```
 OK, I've marked this task as not done yet.
 [D][] Finish CS2103 work (by: Feb 19 2025 1800)
-```
+```  
 
 ## Preventing duplicates
 When adding a new task, the system will check if a task with the same description exists in the task list. If it exists, it will notify you with a duplicate message.
