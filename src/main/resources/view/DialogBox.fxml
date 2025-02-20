@@ -2,28 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0"
+         type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane>
-<!--            <Rectangle height= "50" width="50" arcWidth="10" arcHeight="10" fill="blue"  />-->
-            <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true" />
-        </Pane>
+        <StackPane fx:id="profPicPane" >
 
-
-        <StackPane>
-            <Circle fx:id="userImage" radius="40"/>
+            <Rectangle fx:id="textBoxBorder" arcWidth="10" arcHeight="10"/>
+            <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true"/>
         </StackPane>
+
+
+        <Circle fx:id="userImage" radius="40"/>
 
 
     </children>
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
 </fx:root>

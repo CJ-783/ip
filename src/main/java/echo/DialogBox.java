@@ -7,17 +7,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -29,6 +31,12 @@ public class DialogBox extends HBox {
     @FXML
     private Circle userImage;
 
+    @FXML
+    private Rectangle textBoxBorder;
+
+    @FXML
+    private StackPane profPicPane;
+
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -39,11 +47,24 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        userImage.setFill(new ImagePattern(img));
+        profPicPane.setPadding(new Insets(10,10,10,10));
+
         dialog.setText(text);
+        Text texts = new Text(text);
+        enTextBox(textBoxBorder, texts);
+        userImage.setFill(new ImagePattern(img));
+
     }
 
+    private void enTextBox(Rectangle hBox, Text text) {
+        textBoxBorder.setFill(Color.WHITE);
+        double padding = 10;
+        textBoxBorder.setHeight(text.getLayoutBounds().getHeight() + 15);
+        textBoxBorder.setWidth(text.getLayoutBounds().getWidth() + 15);
+        textBoxBorder.setEffect(new DropShadow(1, -1, 2, Color.LIGHTGRAY));
 
+
+    }
 
 
     /**
