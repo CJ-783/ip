@@ -20,7 +20,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Echo echo = new Echo();
+    private Echo echo;
 
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
@@ -33,6 +33,11 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         welcomeMessgae();
+    }
+
+    /** Injects the Echo instance */
+    public void setEcho(Echo d) {
+        echo = d;
     }
 
     /**
