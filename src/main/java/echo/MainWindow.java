@@ -51,7 +51,6 @@ public class MainWindow extends AnchorPane {
     }
     @FXML
     private void welcomeMessgae() {
-
         String welcomeMsg = "Welcome to Echo!" + "\n" + "What can I do for you?";
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(welcomeMsg, dukeImage));
     }
