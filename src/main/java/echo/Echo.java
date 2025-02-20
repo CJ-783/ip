@@ -18,8 +18,6 @@ public class Echo {
     private TaskList taskList;
     private Storage storage;
 
-    //private static final File SAVED_FILE = new File("Data/echo.Echo.txt");
-
     /**
      * Initializes the ui, tasklist, storage, and parser object.
      */
@@ -46,7 +44,5 @@ public class Echo {
     }
     public void run() {
     }
-
-
 
 }

@@ -48,22 +48,24 @@ public class DialogBox extends HBox {
         }
 
         profPicPane.setPadding(new Insets(10,10,10,10));
-
         dialog.setText(text);
         Text texts = new Text(text);
-        enTextBox(textBoxBorder, texts);
+        enTextBox(texts);
         userImage.setFill(new ImagePattern(img));
 
     }
 
-    private void enTextBox(Rectangle hBox, Text text) {
+    /**
+     * Styles the text box by setting its size, background colour, and shadow effect.
+     *
+     * @param text The text object containing the dialog message.
+     */
+    private void enTextBox(Text text) {
         textBoxBorder.setFill(Color.WHITE);
-        double padding = 10;
-        textBoxBorder.setHeight(text.getLayoutBounds().getHeight() + 15);
-        textBoxBorder.setWidth(text.getLayoutBounds().getWidth() + 15);
+        double padding = 15;
+        textBoxBorder.setHeight(text.getLayoutBounds().getHeight() + padding);
+        textBoxBorder.setWidth(text.getLayoutBounds().getWidth() + padding);
         textBoxBorder.setEffect(new DropShadow(1, -1, 2, Color.LIGHTGRAY));
-
-
     }
 
 
@@ -77,6 +79,13 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a dialog box for the messgae.
+     *
+     * @param text The message..
+     * @param img The profile image.
+     * @return A DialogBox configured for the user's message.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
