@@ -82,6 +82,11 @@ public class Parser {
     private String unMark(String userInput) {
         String index = userInput.split(" ")[1];
         int unmarkIndex = Integer.parseInt(index) - 1;
+        //check the index user key in is within the range
+        if (unmarkIndex > taskList.getTotalTask() || unmarkIndex < 0 ) {
+            return "The task doesn't exist!";
+        }
+
         taskList.setUnmark(unmarkIndex);
         storage.saveData("replace");
         return ui.unmark(unmarkIndex, taskList);
@@ -96,6 +101,10 @@ public class Parser {
     private String mark(String userInput) {
         String index = userInput.split(" ")[1];
         int markIndex = Integer.parseInt(index) - 1;
+        //check the index user key in is within the range
+        if (markIndex > taskList.getTotalTask() || markIndex < 0 ) {
+            return "The task doesn't exist!";
+        }
         taskList.setMark(markIndex);
         storage.saveData("replace");
         return ui.mark(markIndex, taskList);
@@ -131,8 +140,9 @@ public class Parser {
 
     private String handleDelete(String[] commandParts) {
         int index = Integer.parseInt(commandParts[1]) - 1;
-        if (index > taskList.getTotalTask() - 1) {
-            return "The task list doesn't exist!";
+        //check the index user key in is within the range
+        if (index > taskList.getTotalTask() - 1 || index < 0) {
+            return "The task doesn't exist!";
         }
         String returnString = ui.deleteFromList(index, taskList);
         taskList.removeTask(index);

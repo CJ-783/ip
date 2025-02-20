@@ -19,7 +19,6 @@ public class TaskList {
      * Default constructor for TaskList
      */
     public TaskList() {
-
     }
 
     /**
