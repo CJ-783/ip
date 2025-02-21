@@ -33,6 +33,17 @@ public class Parser {
         this.storage = storage;
     }
 
+    private Boolean isValidCommand(String input, String[] commandParts) {
+        if (input.equals("list") || input.equals("bye")) {
+            return true;
+        }
+
+        if (commandParts.length > 1) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Determines the action based on the user input command.
@@ -43,7 +54,8 @@ public class Parser {
     public String getOption(String userInput) {
         String[] commandParts = userInput.split(" ");
         String userCommand = commandParts[0].trim().toLowerCase();
-        if (commandParts.length < 2) {
+
+        if (!isValidCommand(userInput, commandParts)) {
             return "Please add the description";
         }
 
@@ -85,7 +97,7 @@ public class Parser {
         String index = userInput.split(" ")[1];
         int unmarkIndex = Integer.parseInt(index) - 1;
         //check the index user key in is within the range
-        if (unmarkIndex > taskList.getTotalTask() || unmarkIndex < 0 ) {
+        if (unmarkIndex > taskList.getTotalTask() - 1 || unmarkIndex < 0 ) {
             return "The task doesn't exist!";
         }
 
@@ -104,7 +116,7 @@ public class Parser {
         String index = userInput.split(" ")[1];
         int markIndex = Integer.parseInt(index) - 1;
         //check the index user key in is within the range
-        if (markIndex > taskList.getTotalTask() || markIndex < 0 ) {
+        if (markIndex > taskList.getTotalTask() -1 || markIndex < 0 ) {
             return "The task doesn't exist!";
         }
         taskList.setMark(markIndex);
