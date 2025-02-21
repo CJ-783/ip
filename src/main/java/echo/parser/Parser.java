@@ -2,7 +2,6 @@ package echo.parser;
 
 import java.util.ArrayList;
 
-import echo.Echo;
 import echo.exceptions.DateFormatError;
 import echo.exceptions.EchoDuplicateTask;
 import echo.exceptions.EchoIncorrectOption;
@@ -44,6 +43,9 @@ public class Parser {
     public String getOption(String userInput) {
         String[] commandParts = userInput.split(" ");
         String userCommand = commandParts[0].trim().toLowerCase();
+        if (commandParts.length < 2) {
+            return "Please add the description";
+        }
 
         switch (userCommand) {
         case "bye":
