@@ -49,22 +49,18 @@ public class DialogBox extends HBox {
 
         profPicPane.setPadding(new Insets(10,10,10,10));
         dialog.setText(text);
-        Text texts = new Text(text);
-        enTextBox(texts);
+        enTextBox();
         userImage.setFill(new ImagePattern(img));
 
     }
 
     /**
      * Styles the text box by setting its size, background colour, and shadow effect.
-     *
-     * @param text The text object containing the dialog message.
      */
-    private void enTextBox(Text text) {
+    private void enTextBox() {
         textBoxBorder.setFill(Color.WHITE);
-        double padding = 15;
-        textBoxBorder.setHeight(text.getLayoutBounds().getHeight() + padding);
-        textBoxBorder.setWidth(text.getLayoutBounds().getWidth() + padding);
+        textBoxBorder.widthProperty().bind(dialog.widthProperty());
+        textBoxBorder.heightProperty().bind(dialog.heightProperty());
         textBoxBorder.setEffect(new DropShadow(1, -1, 2, Color.LIGHTGRAY));
     }
 
