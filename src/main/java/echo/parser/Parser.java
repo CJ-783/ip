@@ -190,10 +190,11 @@ public class Parser {
 
     private String handleAdd(String option, String details) throws EchoDuplicateTask, DateFormatError {
 
-        String description = details.split("/")[0].trim();
+
 
         switch (option) {
         case "todo": {
+            String description = details;
             try {
                 checkDuplicate(new Todo(description));
             } catch (EchoDuplicateTask e) {
@@ -204,7 +205,10 @@ public class Parser {
         }
 
         case "deadline": {
-            String deadlineDate = details.split("/by ")[1].trim();
+            String[] deadlineParts = details.split("/by");
+
+            String description = deadlineParts[0].trim();
+            String deadlineDate = deadlineParts[1].trim();
             try {
                 Deadline newDateline = new Deadline(description, deadlineDate);
                 checkDuplicate(newDateline);
@@ -218,6 +222,7 @@ public class Parser {
         }
 
         case "event": {
+            String description = details.split("/from")[0];
             String fromDate = details.split("/from")[1];
             fromDate = fromDate.split("/to")[0].trim();
             String deadlineDate = details.split("/to ")[1].trim();
